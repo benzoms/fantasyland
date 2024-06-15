@@ -1,0 +1,69 @@
+<h1>{{h1title}}</h1>
+<form method="POST" action="/foreman/add">
+        <div id="reviewaddinputs">
+            <div id="jnuminput">Job Number <input type="string" name="jobNumber" placeholder="e.x. 1234"></div><br>
+            <div id="jnaminput">Job Name <input type="string" name="jobName" placeholder="e.x. Job 1"></div><br>
+            <div id="jlocinput">Location <input type="string" name="jobLocation" placeholder="e.x. 1234 Whitehouse Rd"></div><br>
+            <div id="jstartdateinput">Start Date <input type="date" id="jobStartDate" name="jobStartDate" value="2018-07-22" min="2018-01-01" max="2018-12-31" /></div><br>
+            <div id="j4maninput">Foreman <input type="string" name="foreman" placeholder="e.x. Jon D"></div><br>
+             
+        </div>	
+        <div id="submitbutton">
+            <input type="submit" value="Submit">
+        </div>
+</form>
+
+<h1>{{h1title}}</h1>
+{{!-- <form method="POST" action="/add">
+    <div id="reviewqueryinputs">
+		    <div id="seminput">Title <input type="string" name="Semester" placeholder="AIT" required></div>
+            <div id="profinput">Title <input type="string" name="Professor" placeholder="Versoza" required></div>
+            <div id="yearinput">Title <input type="number" name="Year" placeholder="2018" required></div>
+    </div>
+    
+    <input id="submitquerybutton" type="submit" value="Search">
+</form> --}}
+ {{!-- <form method="GET" action="/">
+        <div id="reviewqueryinputs">
+            <div id="indseminput">
+            <label for="semesterinp">Semester:</label>
+            <select id="semesterinp" name="semester">
+                <option value="">All</option>
+                <option value="Fall">Fall</option>
+                <option value="Spring">Spring</option>
+            </select>
+            </div>
+            
+            <div id="indprofinput">Professor <input type="string" name="professor" placeholder="Versoza"></div>
+            <div id="indyearinput">Year <input type="number" name="year" placeholder="2018"></div>
+        <div id="submitbutton">
+            <input type="submit" value="Filter">
+        </div>
+        </div>	
+        
+</form> --}}
+
+<div id="jobsContainer">
+    <table>
+        <thead>
+            <tr>
+                <th>Job Number</th>
+                <th>Job Name</th>
+                <th>Location</th>
+                <th>Start Date</th>
+                <th>Foreman</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each jobs}}
+                <tr>
+                    <td>{{jobNumber}}</td>
+                    <td>{{jobName}}</td>
+                    <td>{{jobLocation}}</td>
+                    <td>{{jobStartDate}}</td>
+                    <td>{{foreman}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,408 @@
+{{!-- <head>
+		<title></title>
+		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
+		<link rel="stylesheet" href="../public/stylesheets/egggardenstyle.css" type="text/css" media="screen" title="no title" charset="utf-8">
+</head> --}}
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Playwrite+FR+Moderne:wght@100..400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Danfo&display=swap');
+    body{
+       background-image: url("../images/gifs/chickenswaiting.gif");
+       overflow: hidden;
+    }
+
+    .eggmsg {
+    position: absolute; pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    column-gap: 0;
+    z-index: 60;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-color: #faf3c0;
+    border-style: dashed;
+    width: 60vw;
+    height:auto;
+    
+    
+    font-size: 30px;
+    /* line-height: 20px; */
+    text-align: center;
+    text-wrap:wrap;
+
+    
+    opacity: 0;
+    transition: opacity 0.5s;
+    transform: translate(-35%, -100%);
+    }
+
+
+
+.eggmsg text{
+    
+    text-wrap: wrap;
+    height: auto;
+    margin: 8px;
+    margin-bottom: 0;
+    width: 58vw;
+      font-family: "Prompt", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+    
+    color: sandybrown;
+    overflow-wrap: break-word;
+    
+    /* border-style:solid; */
+}
+
+.general-container {
+
+    /* border-style:solid; */
+    position: absolute;
+    /*width: auto;
+    z-index:31;
+    bottom: 1vh;
+    left: 50vw;*/
+    width: 100px;
+    transform: translate(-50%, -50%);
+  }
+  /*#egg2 {
+    
+    position: absolute;
+    padding-left: 15px;
+    z-index:28;
+    bottom: 3vh;
+    left: 25vw;
+  }
+
+  #egg3 {
+    
+    position: absolute;
+    padding-left: 15px;
+    z-index:30;
+    bottom: 6vh;
+    left: 40vw;
+  }
+
+  #egg4 {
+    position: absolute;
+    padding-left: 15px;
+    z-index:29;
+    bottom: 2vh;
+    left: 36vw;
+  }*/
+
+  .shadow {
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+    width: 100px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    animation: boingShadow 2s ease-in-out infinite alternate;
+  }
+  
+  .egg {
+    cursor: pointer;
+    margin: 20px;
+    margin-bottom:5px;
+    width: 100px;
+    height: 125px;
+    background-color: #faf3c0;
+    border: 1px solid #000;
+    border-top-left-radius: 50% 60%;
+    border-top-right-radius: 50% 60%;
+    border-bottom-left-radius: 50% 40%;
+    border-bottom-right-radius: 50% 40%;
+    transform-origin: center bottom;
+    animation: miniBoing 2s ease-in-out infinite alternate;
+    box-shadow: inset -5px -10px rgba(168, 164, 176, 0.5);
+  }
+
+  div.general-container:last-child div.egg{
+    animation: boing 2s ease-in-out infinite alternate;
+    box-shadow: inset -5px -10px rgba(168, 164, 176, 0.5);
+  }
+
+    .show {
+        opacity: 1;
+        z-index: 60;
+      }
+  
+  /*#egg2spots {
+    background-color: #337d40;
+  }
+  #egg2spots, #egg2spots:after, #egg2spots:before {
+    background-color: #337d40;
+  }
+  #egg3spots {
+    background-color: #8d58c9;
+  }
+  #egg3spots, #egg3spots:after, #egg3spots:before {
+    background-color: #8d58c9;
+  }
+  #egg4spots {
+    background-color: #a2ac0f;
+  }
+  #egg4spots, #egg4spots:after, #egg4spots:before {
+    background-color: #a2ac0f;
+  }*/
+
+  .spots {
+    position: absolute;
+    left: 30px;
+    top: 20px;
+    height: 15px;
+    width: 10px;
+    background-color: #a8a4b0;
+    border-top-left-radius: 60% 60%;
+    border-top-right-radius: 40% 40%;
+    border-bottom-left-radius: 40% 40%;
+    border-bottom-right-radius: 60% 60%;
+  }
+  .spots:before {
+    position: absolute;
+    left: -10px;
+    top: 16px;
+    content: "";
+    display: block;
+    height: 13px;
+    width: 7px;
+    background-color: inherit;
+    border-top-left-radius: 60% 60%;
+    border-top-right-radius: 40% 40%;
+    border-bottom-left-radius: 40% 40%;
+    border-bottom-right-radius: 60% 60%;
+  }
+  .spots:after {
+    position: absolute;
+    left: 0px;
+    top: 25px;
+    content: "";
+    display: block;
+    height: 10px;
+    width: 5px;
+    background-color: inherit;
+    border-top-left-radius: 60% 60%;
+    border-top-right-radius: 40% 40%;
+    border-bottom-left-radius: 40% 40%;
+    border-bottom-right-radius: 60% 60%;
+  }
+  
+  @keyframes boing {
+    from {
+      transform: scale(1, 1) translateY(-20px);
+    }
+    to {
+      transform: scale(1.2, 0.8) translateY(0px);
+    }
+  }
+  @keyframes boingShadow {
+    from {
+      transform: scale(0.9, 1);
+    }
+    to {
+      transform: scale(1.2, 0.8);
+    }
+  }
+
+  @keyframes miniBoing {
+    from {
+      transform: scale(0.6, 0.6) translateY(-10px);
+    }
+    to {
+      transform: scale(0.8, 0.4) translateY(0px);
+    }
+  }
+  @keyframes miniBoingShadow {
+    from {
+      transform: scale(0.9, 1);
+    }
+    to {
+      transform: scale(1.2, 0.8);
+    }
+  }
+#newsfeed {
+    position: absolute;
+    width: 100%;
+    transform: translate(-50%,0%);
+}
+.newsfeedsec p {
+    margin:0;
+    margin-top: 15px;
+    font-size: 80px;
+    font-family: "Danfo", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "ELSH" 0;
+    background: linear-gradient(to bottom right, red, yellow);
+    -webkit-text-fill-color: transparent; 
+    -webkit-background-clip: text; 
+    text-align: center;
+}
+#garden{
+    position: absolute;
+    width: 100vw;
+    border-style: solid;
+    bottom: 0;
+    transform: translate(-50%,-50%);
+}
+#sotd-title {
+    background: linear-gradient(to bottom right, red, yellow);
+-webkit-text-fill-color: transparent; 
+  -webkit-background-clip: text; }
+#potd-title {
+    background: linear-gradient(180deg, rgba(255,184,0,1) 35%, rgba(5,255,0,1) 100%);
+-webkit-text-fill-color: transparent; 
+  -webkit-background-clip: text; }
+#reunion-title {
+    background: linear-gradient(to bottom right, aqua, navy);
+-webkit-text-fill-color: transparent; 
+  -webkit-background-clip: text; }
+
+
+#potdimg {
+  position: relative;
+  height: 20vh;
+}
+
+.progress {
+    width: 60vw;
+    transform: translateX(30%);
+
+    
+    background-color: #e0e0e0;
+    border-radius: 25px;
+    overflow: hidden;
+    /* margin-top:75vh; */
+
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    
+    
+}
+
+.progress-bar {
+    height: 30px;
+    width: 0;
+    background-color: #76c7c0;
+    text-align: center;
+    line-height: 30px;
+    font-size: 25px;
+    color: black;
+    transition: width 0.4s ease;
+}
+</style> 
+
+<div id="newsfeed">
+    <section class="newsfeedsec">
+        <p id="sotd-title">Song of the Day</p>
+        <div style="text-align: center;">
+            <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="150"
+                style="top:5%;position:relative;border-style:solid;width:100%;max-width:660px;overflow:hidden;background:transparent;"
+                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+                src="https://embed.music.apple.com/us/album/peach/1460702037?i=1460702045"></iframe>
+        </div>
+    </section>
+    <section class="newsfeedsec">
+        <p id="potd-title">Photo of the Day</p>
+        <div style="text-align: center;">
+            <img id="potdimg" src="../images/potds/jun15.png">
+        </div>
+    </section>
+    <section class="newsfeedsec">
+        <p id="reunion-title">reunion in...</p>
+        <div style="text-align: center;">
+            <div class="progress">
+            <div id="progressbar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                aria-valuemax="100">
+                <text class="progress-text">0%</text>
+            </div>
+        </div>
+        </div>
+        
+    </section>
+</div>
+<div id="garden">
+    {{#each eggs}}
+        <div class="general-container" id="egg{{eggnum}}" style="bottom: {{yPos}}vh; left: {{xPos}}vw;">
+            <div class="eggmsg" id="eggmsg{{eggnum}}">
+                {{#each (split message delimiter="\r\n")}}
+                <text>{{this}}</text>
+                {{/each}}
+            </div>
+            <div class="shadow" style="animation-duration: {{animationTime}}s;"></div>
+            <div class="egg" style="transform: scale({{scale}}); animation-duration: {{animationTime}}s;">
+                <div class="spots" style="background-color: {{spotcolor}};"></div>
+            </div>
+        </div>
+    {{/each}}
+    {{!-- <div class='general-container'id="egg1">
+    <div class="eggmsg" id="eggmsg1">
+      <text>hiya lovely, here's your first egg! 
+        </text>
+      <text>i absolutely adore you to pieces and i wanna tear you to pieces as well.</text>
+      <text>i will add more stuff to the page asap but i spent way too fuckin</text>
+      <text>long messing with this egg and the msgs. luv you forever</text>
+      <text></text>
+    </div>
+    <div class='shadow'></div>
+    <div class='egg'>
+      <div class='spots'></div>
+    </div>
+  </div> --}}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+            const containers = document.querySelectorAll('.general-container');
+
+            containers.forEach(container => {
+                container.querySelector('.egg').addEventListener('click', () => {
+                    console.log(container.id + "clicked");
+                    const eggMsg = container.querySelector('.eggmsg');
+                    console.log("show "+eggMsg.id)
+                    if (eggMsg.classList.contains('show')) {
+                        eggMsg.classList.remove('show');
+                    } else {
+                        eggMsg.classList.add('show');
+                    }
+                    
+                });
+            });
+        });
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+    const countDownDate = new Date("Jul 10, 2024 10:15:00").getTime();
+    const startDate = new Date("Jun 1, 2024, 16:30:00").getTime();
+    
+    // Get today's date and time
+    const now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    const distanceWhole = countDownDate - startDate;
+    const distanceLeft = countDownDate - now;
+
+    // Time calculations for minutes and percentage progressed
+    const minutesLeft = Math.floor(distanceLeft / (1000 * 60));
+    const minutesTotal = Math.floor(distanceWhole / (1000 * 60));
+    const progress = Math.floor(((minutesTotal - minutesLeft) / minutesTotal) * 100);
+
+    const decminutesLeft = (distanceLeft / (1000 * 60));
+    const decminutesTotal = (distanceWhole / (1000 * 60));
+    const decprogress = (((decminutesTotal - decminutesLeft) / decminutesTotal) * 100);
+
+    // Update the progress bar
+    const progressBar = document.getElementById('progressbar');
+    progressBar.setAttribute('aria-valuenow', progress);
+    progressBar.style.width = progress + "%";
+    // progressBar.innerHTML = progress + "%";
+    progressBar.innerHTML = decprogress.toString().substring(0, 6) + "%";
+});
+</script>

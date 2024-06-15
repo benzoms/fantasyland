@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+		<title></title>
+		<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
+		<link rel="stylesheet" href="/stylesheets/layoutstyle.css" type="text/css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+
+<div id="mapicondiv">
+  <img id="mapicon" src="../images/assets/map/mapicon.png">
+  <button id="closemapbtn" class="item-3"></button>
+</div>
+<div class="worldmap" id="map">
+  <img id="map-img" src="../images/assets/map/cartoon-map.png">
+  <div class="map-icons">
+    <a href="/egg-garden"><img id="egggarden" src="../images/assets/map/egggarden.png" alt="egggarden"></a>
+    <a href="/photo-forest"><img id="photoforest" src="../images/assets/map/enchantedforest.png" alt="egggarden"></a>
+    <a href="/library"><img id="library" src="../images/assets/map/library.png" alt="library"></a>
+  </div>
+</div>
+<div id="container">
+	{{{body}}}
+</div>
+{{!-- <div id="container">
+	<div id="topheader">
+		<header>
+			<h1><span>AIT</span>Y-THREE ISSA B</h1>
+			<h3>An anonymous course review site.</h3>
+		</header>
+		<nav>
+			<ul>
+				<li><a href="/">All reviews</a></li>
+				<li><a href="/reviews/mine">My reviews</a></li>
+				<li><a href="/reviews/add">Add review!</a></li>
+			</ul>
+		</nav>
+		<div class="about-session">Your session's total page visits: {{ count }} </div>
+	</div>
+	
+	<div id="content">
+		{{{ body }}}
+	</div>
+</div> --}}
+</body>
+<script>
+	const deployed = true;
+	let pathroot = '';
+	if(!deployed){
+		pathroot = 'file:///Users/benzhang/Mine/Tech/Projects/backgrounds/';
+	}else {
+		pathroot = 'https://';
+	}
+	console.log(pathroot+"benzoms.github.io/pages/date/library.html");
+
+	document.addEventListener('DOMContentLoaded', () => {
+		const div = document.querySelector('#mapicondiv');
+		const map = document.querySelector('#map');
+		div.addEventListener('click', () => {
+			if (map.classList.contains('show')) {
+				map.classList.remove('show');
+			} else {
+				map.classList.add('show');
+			}
+		});
+	});
+
+
+
+
+</script>
+</html>

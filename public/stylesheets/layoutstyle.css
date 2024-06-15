@@ -1,0 +1,90 @@
+@media (hover: none) and (pointer: coarse) and (orientation: portrait) {
+    body {
+        background-size: auto 100vh;
+        background-position: top;
+        background-repeat: no-repeat;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #mapicondiv {
+        position: absolute;
+        z-index: 40;
+        margin-bottom: 5%;
+        bottom: 5%;
+        left: 5%;
+        height: auto;
+        width:auto;
+        /* border-style: solid; */
+      }
+      .hide {
+        opacity: 0;
+        display: none;
+      }
+      
+      #mapicondiv img{
+        cursor: pointer;
+        height: 10vw;
+        width:auto;
+        /* border-style: solid; */
+        transition: transform 0.2s ease-in-out;
+        opacity: 1;
+        transition: opacity 0.5s;
+        /* display:block; */
+      }
+      #mapicondiv img:hover {  
+        transform: scale(1.2) rotate(3deg);
+      }
+      .worldmap {
+        opacity: 0;
+        transition: opacity 0.5s;
+        z-index: 25;
+        text-align: center;
+      }
+      #map {
+        position: absolute;
+        /* left:5%; */
+        width: 80vw;
+        top: 10vh;
+        /* transform: translate(-5%, 55%); */
+        
+      }
+      #map-img{
+        width: 100%;
+        /* margin: 5%; */
+      }
+      .show {
+        opacity: 1;
+        z-index: 50;
+      }
+      .map-icons img{
+        cursor: pointer;
+        position: absolute;
+        z-index: 51;
+        height: 80px;
+        width: auto;
+        transition: transform 0.2s ease-in-out;
+      }
+      .map-icons img:hover {
+        transform: scale(1.2) rotate(3deg);
+      }
+      
+      #egggarden {
+        left: 25%;
+        top: 40%;
+      }
+      #photoforest {
+        right: 25%;
+        bottom: 40%;
+      }
+      #library {
+        right: 45%;
+        top: 30%;
+      }
+
+}
+/* @media (hover: hover) and (pointer: fine) {
+    body{background-size:auto;}
+} */
