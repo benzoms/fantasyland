@@ -74,6 +74,9 @@ class EggObj {
 //   }
 //   res.render("index", {count: req.session.pageVisits, h1title: "My Reviews", reviews: req.session.addedThisSession});
 // });
+app.get('/', async(req, res) => {
+  res.redirect("/egg-garden");
+});
 app.get('/add-egg', async(req, res) => {
   res.render("addegg");
 });
