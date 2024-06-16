@@ -39,13 +39,14 @@
         transform: scale(1.2) rotate(3deg);
       }
       .worldmap {
+        
         opacity: 0;
         transition: opacity 0.5s;
-        z-index: 25;
+        z-index: -1;
         text-align: center;
       }
       #map {
-        pointer-events: none;
+        
         position: absolute;
         /* left:5%; */
         width: 80vw;
@@ -54,6 +55,7 @@
         
       }
       #map-img{
+        pointer-events: none;
         width: 100%;
         /* margin: 5%; */
       }
