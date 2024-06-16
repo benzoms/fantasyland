@@ -1214,11 +1214,22 @@ p {
         
     transform: scaleX(-1);
 }
+
+#pagenavbuttons {
+    position:absolute;
+    top:15vh;
+    width: 100vw;
+    transform: translate(-50%, -50%);
+}
 </style>
         
 
 <div>
     <a href="/library"><p id="librarybacklink">← LEAVE READING ROOM </p></a>
+</div>
+<div id="pagenavbuttons">
+    <button onclick="alert('back');">< back</button>
+    <button onclick="alert('next');">next ></button>
 </div>
 <div><img id="owl" src="../images/gifs/owl.gif"></div>
 <div class="instruction">Flip the page</div>
