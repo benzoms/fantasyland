@@ -27,13 +27,13 @@ handlebars.registerHelper('split', function (context, options) {
 app.use(express.urlencoded({ extended: false }));
 
 //set session option and middlware to use it
-import session from 'express-session';
-const sessionOptions = { 
-  secret: 'secret for signing session id ooh spooky', 
-  saveUninitialized: false, 
-  resave: false 
-};
-app.use(session(sessionOptions));
+// import session from 'express-session';
+// const sessionOptions = { 
+//   secret: 'secret for signing session id ooh spooky', 
+//   saveUninitialized: false, 
+//   resave: false 
+// };
+// app.use(session(sessionOptions));
 
 //ReviewObj for easy logging and tracking
 class EggObj {
