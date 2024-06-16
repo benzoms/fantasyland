@@ -1382,7 +1382,10 @@ p {
 document.addEventListener('DOMContentLoaded', () => {
             console.log('clicked');
             document.getElementById('frontoffrontcover').addEventListener('click', function () { alert('hey'); movePage(this, 1); });
-            document.getElementById('backoffrontcover').addEventListener('click', function () { movePage(this, 2); });
+            
+        });    
+
+document.getElementById('backoffrontcover').addEventListener('click', function () { movePage(this, 2); });
 document.getElementById('p1').addEventListener('click', function () { movePage(this, 3); });
 document.getElementById('p2').addEventListener('click', function () { movePage(this, 4); });
 document.getElementById('p3').addEventListener('click', function () { movePage(this, 5); });
@@ -1390,9 +1393,6 @@ document.getElementById('p4').addEventListener('click', function () { movePage(t
 document.getElementById('p5').addEventListener('click', function () { movePage(this, 7); });
 document.getElementById('p6').addEventListener('click', function () { movePage(this, 8); });
 document.getElementById('p7').addEventListener('click', function () { movePage(this, 9); });
-        });    
-
-
 
    let currentPage = 1;
 
