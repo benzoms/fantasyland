@@ -1223,12 +1223,12 @@ p {
 <div><img id="owl" src="../images/gifs/owl.gif"></div>
 <div class="instruction">Flip the page</div>
 <div class="book">
-  <div class="page cover-front" onclick="movePage(this, 1)">
+  <div id="frontoffrontcover" class="page cover-front" >
     <h1>CAMPAIGN 1: Character Options</h1>
     <div class="hat"><i class="fab fa-pied-piper-hat"></i></div>
     <h2>Olivia D'allessandro</h2>
   </div>
-  <div class="page cover-front" onclick="movePage(this, 2)"><p class="bigp">The Great Library of Omniscientia:</p>
+  <div id="backoffrontcover" class="page cover-front"><p class="bigp">The Great Library of Omniscientia:</p>
     <p>An infinite library that contains every book ever written, as well as those that have yet to be written. The library's layout is constantly shifting, and it is inhabited by knowledgeable, eccentric librarians and magical bookworms. Adventurers must delve into the labyrinthine stacks to uncover lost knowledge, forbidden spells, and the secrets of the library's enigmatic origins.
 </p></div>
   <div id="p1" class="page text-page" >
@@ -1379,6 +1379,9 @@ p {
   <div class="page"></div>
 </div>
 <script>
+    
+document.getElementById('frontoffrontcover').addEventListener('click', function () { movePage(this, 1) });
+document.getElementById('backoffrontcover').addEventListener('click', function () { movePage(this, 2) });
 document.getElementById('p1').addEventListener('click', function () { movePage(this, 3) });
 document.getElementById('p2').addEventListener('click', function () { movePage(this, 4) });
 document.getElementById('p3').addEventListener('click', function () { movePage(this, 5) });
