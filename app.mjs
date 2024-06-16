@@ -105,7 +105,7 @@ app.get('/', async(req, res) => {
 app.get('/add-egg', async(req, res) => {
   res.render("addegg");
 });
-app.get('/library/reading-room', async(req, res) => {
+app.get('/library/reading-room', (req, res) => {
   res.render("readingroom");
 });
 
