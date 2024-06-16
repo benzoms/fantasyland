@@ -45,6 +45,7 @@
         text-align: center;
       }
       #map {
+        pointer-events: none;
         position: absolute;
         /* left:5%; */
         width: 80vw;
