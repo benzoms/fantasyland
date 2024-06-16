@@ -65,7 +65,7 @@
     bottom: 1vh;
     left: 50vw;*/
     width: 100px;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 20%);
   }
   /*#egg2 {
     
@@ -225,6 +225,7 @@
     }
   }
 #newsfeed {
+    margin-top: 15%;
     position: absolute;
     width: 100%;
     transform: translate(-50%,0%);
@@ -297,8 +298,66 @@
     color: black;
     transition: width 0.4s ease;
 }
-</style> 
 
+.banner {
+    position: absolute;
+    top:5px;
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    background: repeating-linear-gradient(
+        45deg,
+        yellow,
+        yellow 10px,
+        black 10px,
+        black 20px
+    );
+    display: flex;
+    align-items: center;
+    transform: translate(-50%, 0%);
+}
+#banner2 {
+  
+  top: 55px;
+  background: aquamarine;
+}
+#banner2 div{
+  width:150%;
+  background-color: rgba(0, 0, 0, 0);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  animation: scroll 12s linear infinite;
+  
+}
+
+.scrolling-text {
+    background-color: yellow;
+    position: absolute;
+    white-space: nowrap;
+    font-size: 24px;
+    font-family: "Rubik Mono One", monospace;
+  font-weight: 400;
+  font-style: normal;
+    color: black;
+    animation: scroll 10s linear infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+</style> 
+  <div class="banner">
+    <div class="scrolling-text">JUNE 15: uv index high of 6 not too bad but still wear sunscreen </div>
+    <!-- SUNSCREEN - UV INDEX 8!! - SUNSCREEN - UV INDEX 8!! - SUNSCREEN -->
+</div>
+<div class="banner" id="banner2">
+  <div class="scrolling-text"> hi hi hi love i enjoy u so much i might be out at dinner tn so maybe will not b able to call but we shall see luv u</div>
+</div>
 <div id="newsfeed">
     <section class="newsfeedsec">
         <p id="sotd-title">Song of the Day</p>
