@@ -55,7 +55,7 @@
         
       }
       #map-img{
-        pointer-events: none;
+        /* pointer-events: none; */
         width: 100%;
         /* margin: 5%; */
       }
