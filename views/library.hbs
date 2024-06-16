@@ -3,4 +3,57 @@
        background-image: url("../images/gifs/library.gif");
        overflow: hidden;
     }
+    #ebitcontainer {
+        position: absolute;
+        width: 100vw;
+        transform: translate(-50%, 50%);
+    }
+    .ebitfig{
+        height: 80vh;
+        width: 30vw;
+        height:auto;
+    }
+    .charattrdiv{
+        background-color: rgba(255, 255, 255, 0.7);
+        border-style: solid;
+        display: flex;
+    }
+    .charstats {
+        
+        flex-direction: column;
+        float: bottom;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-weight: bold;
+        font-size: 30px;
+    }
+    .charstats p{
+        display: inline;
+    }
+    .posattr {color: green; }
+    .negattr {color: red;}
+
 </style>
+<div id="ebitcontainer"> 
+    <div class="charattrdiv">
+        <img class="ebitfig" src="../images/assets/liv8bit.png" style="width: 30vw; float: left;">
+        <div class="charstats">
+            <p class="posattr">+10</p><p> sex appeal</p><br>
+            <p class="posattr">+10</p><p> artistic expression</p><br>
+            <p class="posattr">+10</p><p> capacity for wonder</p><br>
+            <p class="negattr">-5</p><p> dehydrated (this debuff dissapears when played with Ben)</p>
+        </div>
+    </div>
+    <div class="charattrdiv" style="border-style: solid;">
+        <img class="ebitfig" src="../images/assets/ben8bit.png" style="width: 30vw; float: right;"></>
+        <div class="charstats">
+            <p class="posattr">+2</p><p> IT</p><br>
+            <p class="posattr">+2</p><p> graduated</p><br>
+            <p class="posattr">+2</p><p> drivers license</p><br>
+            <p class="negattr">-5</p><p> unemployed</p><br>
+            <p class="negattr">-5</p><p> not nice</p><br>
+            <p>*all subject to change cuz u should pick out my attributes cuz i picked out urs</p>
+
+        </div>
+    </div>
+    
+</div>
