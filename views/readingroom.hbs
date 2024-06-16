@@ -1231,7 +1231,7 @@ p {
   <div class="page cover-front" onclick="movePage(this, 2)"><p class="bigp">The Great Library of Omniscientia:</p>
     <p>An infinite library that contains every book ever written, as well as those that have yet to be written. The library's layout is constantly shifting, and it is inhabited by knowledgeable, eccentric librarians and magical bookworms. Adventurers must delve into the labyrinthine stacks to uncover lost knowledge, forbidden spells, and the secrets of the library's enigmatic origins.
 </p></div>
-  <div class="page text-page" onclick="movePage(this, 3)">
+  <div id="p1" class="page text-page" >
     <p class="bigp">Welcome to Your Potential Characters!</p>
     
     <p>Your potential characters have been generated via The Robot using the campaign setting description and the attributes you rolled, which are below:</p>
@@ -1245,11 +1245,11 @@ p {
     </div>
     
   </div>
-  <div class="page text-page" onclick="movePage(this, 4)">
+  <div id="p2" class="page text-page" >
     <p class="bigp">Valeria Brightshield</p>
     <img id="bookcharimg" src="../images/assets/ValeriaBrightshield.png">
     </div>
-  <div class="page text-page" onclick="movePage(this, 5)">
+  <div id="p3" class="page text-page">
     <p class="bigp">Origins</p>
     <p>Valeria Brightshield, a former knight of the Silver Order, is known for her radiant personality and unmatched strength in battle. Injured during a fierce skirmish, she was sent to the Great Library of Omniscientia to recover and uncover ancient combat techniques that could help her order. Her low constitution means she must be careful not to push herself too hard, but her charisma makes her a natural leader among the interns.</p>
     <p class="bigp">Skills and Abilities</p>
@@ -1258,11 +1258,11 @@ p {
     <p><text style="font-weight: bold;">Keen Insight:</text> Relies on wisdom to navigate the library's mystical elements.</p>
     <p><text style="font-weight: bold;">Swift Reflexes:</text> Decent dexterity for quick, agile movements.</p>
 </div>
-<div class="page text-page" onclick="movePage(this, 6)">
+<div id="p4" class="page text-page">
     <p class="bigp">Elysia Windrunner</p>
     <img id="bookcharimg" src="../images/assets/ElysiaWindrunner.png">
     </div>
-<div class="page text-page" onclick="movePage(this, 7)">
+<div id="p5" class="page text-page">
     <p class="bigp">Origins</p>
     <p>Elysia Windrunner, a renowned traveling bard, was known for her captivating performances and incredible physical prowess. Seeking to enhance her storytelling with forgotten tales and hidden knowledge, she took an internship at the Great Library. Despite her low intelligence, her charm opens many doors, and her wisdom guides her through the library's puzzles and traps.</p>
     <p class="bigp">Skills and Abilities</p>
@@ -1272,11 +1272,11 @@ p {
     <p><span style="font-weight: bold">Agile Movements:</span> Adequate dexterity aids in swift, graceful actions.</p>
 </div>
   
-<div class="page text-page" onclick="movePage(this, 8)">
+<div id="p6" class="page text-page">
     <p class="bigp">Thalia Ironfist</p>
     <img id="bookcharimg" src="../images/assets/ThaliaIronfist.png">
     </div>
-<div class="page text-page" onclick="movePage(this, 9)">
+<div id="p7" class="page text-page">
     <p class="bigp">Origins</p>
     <p>Thalia Ironfist, a blacksmith's daughter with the strength to match her father's forge, left her village to seek greater knowledge of legendary forging techniques rumored to be hidden in the Great Library. Her powerful presence and physical strength make her a formidable figure, even as she navigates the intellectual challenges of the library with difficulty.</p>
     <p class="bigp">Skills and Abilities</p>
@@ -1379,6 +1379,14 @@ p {
   <div class="page"></div>
 </div>
 <script>
+document.getElementById('p1').addEventListener('click', function () { movePage(this, 3) });
+document.getElementById('p2').addEventListener('click', function () { movePage(this, 4) });
+document.getElementById('p3').addEventListener('click', function () { movePage(this, 5) });
+document.getElementById('p4').addEventListener('click', function () { movePage(this, 6) });
+document.getElementById('p5').addEventListener('click', function () { movePage(this, 7) });
+document.getElementById('p6').addEventListener('click', function () { movePage(this, 8) });
+document.getElementById('p7').addEventListener('click', function () { movePage(this, 9) });
+
    let currentPage = 1;
 
 function toggleClass(e, toggleClassName) {
