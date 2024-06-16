@@ -49,7 +49,32 @@ class EggObj {
   }
 }
 
+app.use(function(req, res, next) { // TODO: use middleware required for logging request
+  console.log(req.params)
+  // const poo = await User.find();
+  // console.log(poo);
+  console.log(req.session)
+  console.log('Method:', req.method);
+  console.log('Path:', req.path);
+  console.log('Query:', req.query);
+  console.log('Body:', req.body);
+  next();
+});
 
+// app.use((req, res, next) => {
+//     const error = new Error("Route not found");
+//     error.status = 404;
+//     next(error);
+// });
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.json({
+      error: {
+          message: error.message,
+      },
+  });
+  next(error);
+});
 //route: GET /reviews/add - show the add review form
 // app.get('/reviews/add', (req, res) => {
 //   //update pageVisits
