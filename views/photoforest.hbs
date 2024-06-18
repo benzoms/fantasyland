@@ -105,6 +105,42 @@ font-family: "Prompt", sans-serif;
   from {opacity: .4} 
   to {opacity: 1}
 }
+.speech-bubble {
+    bottom: 450px;
+	position: absolute;
+	background: rgba(255,255,255,0.8);
+	border-radius: .4em;
+    width:80vw;
+    transform: translate(-25%, 0%);
+}
+#frogaskform{
+    position: absolute;
+    animation: none;
+    
+    bottom:10svh;
+    transform: translate(-50%, 0%);
+}
+#frogaskform input{
+    font-size: 30px;
+}
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-top-color: rgba(255,255,255,0.8);
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -10px;
+	margin-bottom: -20px;
+}
+
+.speech-bubble h2{
+    margin: 15px;
+}
 </style>
 <div class="slideshow-container">
 
@@ -149,12 +185,28 @@ font-family: "Prompt", sans-serif;
 
 
 <div id="wizardfrog">
+    <hgroup class="speech-bubble">
+	    {{!-- <h1>Bubbly</h1> --}}
+        {{#each frogadvice}}
+            <h2> {{this}}</h2>
+        {{/each}}
+    </hgroup>
     <img src="../images/assets/animals/wizardfrog.gif">
+</div>
+<div id="frogaskform">
+<form action="/sage-advice" method="POST">
+    <input id="adviceTopic" name="topic" value="I feel lost.">
+    <input type="submit" value="Ask Frog">
+</form>
 </div>
 
 
-
 <script>
+
+async function askfrog(){
+    alert(document.getElementById('adviceTopic').value);
+}
+
 let slideIndex = 1;
 showSlides(slideIndex);
 

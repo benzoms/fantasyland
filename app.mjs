@@ -133,7 +133,7 @@ app.post('/add-egg/add', async(req, res) => {
 //   createdAt: Date
 // });
 app.get('/photo-forest', (req, res) => {
-  res.render("photoforest");
+  res.render("photoforest", {frogadvice:"Doth tho require guidance?\n".split('\n')});
 });
 app.get('/library', (req, res) => {
   res.render("library");
@@ -216,6 +216,61 @@ app.get('/egg-garden', async(req, res) => {
   
 //   res.render("index", {count: req.session.pageVisits, h1title: "All Reviews", reviews: reviewList});
 // });
+import OpenAI from 'openai'
+const openai = new OpenAI({
+  
+  apiKey:process.env.OPENAI_API_KEY
+});
+app.post('/sage-advice', async(req, res) => {
+  if(!req.body.topic){
+    res.render('photoforest', {frogadvice:'Somethin wrong come back later\n'});
+  }else{
+    
+    const prompt = "Give me advice on this: " +req.body.topic;
+    const completion = await openai.chat.completions.create({
+      "model": "gpt-3.5-turbo",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a mystical frog tasked with giving advice. You will be given a topic on which you should give wise, sage, advice (if possible use a frog metaphor). In all your responses, say *ribbit* occasionally and intersperse frog puns whenever possible. After your advice, make sure to mention how tired you are at that you need to time to rest and recharge your wisdom giving abilities."
+        },
+        {
+          "role": "user",
+          "content": prompt
+        }
+      ]
+    })
+    console.log(completion.choices[0].message);
+    res.render('photoforest', {frogadvice:completion.choices[0].message.content.split('\n')});
+  }
+  
+})
+app.post('/sage-advice2', async(req, res) => {
+  // console.log(req.body.topic);
+  
+  // console.log(completion.choices[0].message);
+  // const url = 'http://localhost:3000/api/message'
+  // const poses = savePositions()
+  // // to change for fetch for a post
+  // // method
+  // // content type header
+  // // body
+  
+  // const opts = {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify(poses)
+  // }
+  // const res = await fetch(url, opts)
+  // const data = await res.json()
+  
+  const data = completion.json()
+  console.log(data)
+  
+});
 
 
 app.listen(process.env.PORT || 3000);
+// console.log(chatGptExecute());
