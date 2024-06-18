@@ -132,8 +132,41 @@ app.post('/add-egg/add', async(req, res) => {
 //   message: String,
 //   createdAt: Date
 // });
+let limit = new Date(0);
+
+  function checkLimit() {
+    const now = new Date();
+    if (now < limit) {
+      const timeDifference = limit - now;
+      const minutes = Math.floor(timeDifference / 60000);
+      const seconds = ((timeDifference % 60000) / 1000).toFixed(0);
+      return `I am still *ribbit* resting. Return in ${minutes} minutes and ${seconds} seconds.`;
+    } else {
+      // Set the limit datetime to 5 minutes from now
+      
+      return 'okay';
+      alert("Good");
+    }
+  }
+
+  function setNewLimit() {
+    const now = new Date();
+    limit = new Date(now.getTime() + 10 * 60000);
+  }
+
 app.get('/photo-forest', (req, res) => {
-  res.render("photoforest", {frogadvice:"Doth tho require guidance?\n".split('\n')});
+  let cl = checkLimit();
+  console.log(cl);
+  console.log(typeof cl);
+  console.log(limit);
+  if(cl != 'okay'){
+    res.render("photoforest", {frogadvice:(String(cl)+'\n').split('\n'), frogresting:true});
+  }else{
+    
+    res.render("photoforest", {frogadvice:'Doth thou require guidance?\n'.split('\n')});
+   
+  }
+  
 });
 app.get('/library', (req, res) => {
   res.render("library");
@@ -159,69 +192,12 @@ app.get('/egg-garden', async(req, res) => {
     }
     res.render("egggarden", {eggs: eggList});
   });
-//route: POST /foreman/add - process a new foreman
-// app.post('/foreman/add', async (req, res) => {
-//   const newJob = new Job({
-//     _id: new mongoose.Types.ObjectId(),
-//     jobNumber: req.body.jobNumber,
-//     jobName: req.body.jobName,
-//     jobLocation: req.body.jobLocation,
-//     jobStartDate: req.body.jobStartDate,
-//     active: true,
-//     foreman: req.body.foreman
-//    });
-//    await newJob.save(); //save new review in db
-// //    if(!req.session.addedThisSession) {
-// //     req.session.addedThisSession = [];
-// //    }
-// //    req.session.addedThisSession.push(new ReviewObj({
-// //       courseNumber: req.body.courseNumber,
-// //       courseName: req.body.courseName,
-// //       semester: req.body.semester,
-// //       year: req.body.year,
-// //       professor: req.body.professor,
-// //       review: req.body.review
-// //     }));
-    
-//   res.redirect('/foreman');
-// });
 
-//route: GET / - show all course reviews
-// app.get('/', async (req, res) => {
-//   //update pageVisits
-// //   if(req.session.pageVisits) {
-// //     req.session.pageVisits += 1;
-// //   } else{
-// //     req.session.pageVisits = 1;
-// //   }
   
-//   //deconstruct query into list of [k,v], remove where v='', then reconstruct into Object
-//   req.query = Object.fromEntries(
-//     Object.entries(req.query).filter((value) => value[1] !== "")
-//   );
-  
-//   //retrieve reviews
-//   const c = await Review.find(req.query);
-//   const reviewList = [];
-
-//   if(c+'') {
-//     c.forEach(function(rev) {
-//       const newRev = new ReviewObj(rev);
-//       reviewList.push(newRev);    
-//     });   
-
-//   }else {
-//     console.log('found none' + c); //throw err
-//   }
-  
-//   res.render("index", {count: req.session.pageVisits, h1title: "All Reviews", reviews: reviewList});
-// });
 import OpenAI from 'openai'
-const openai = new OpenAI({
-  
-  apiKey:process.env.OPENAI_API_KEY
-});
+const openai = new OpenAI({ apiKey:process.env.OPENAI_API_KEY });
 app.post('/sage-advice', async(req, res) => {
+  setNewLimit();
   if(!req.body.topic){
     res.render('photoforest', {frogadvice:'Somethin wrong come back later\n'});
   }else{
@@ -232,7 +208,7 @@ app.post('/sage-advice', async(req, res) => {
       "messages": [
         {
           "role": "system",
-          "content": "You are a mystical frog tasked with giving advice. You will be given a topic on which you should give wise, sage, advice (if possible use a frog metaphor). In all your responses, say *ribbit* occasionally and intersperse frog puns whenever possible. After your advice, make sure to mention how tired you are at that you need to time to rest and recharge your wisdom giving abilities."
+          "content": "You are a mystical frog tasked with giving advice. You will be given a topic on which you should give wise, sage, advice (if possible use a frog metaphor). In all your responses, say *ribbit* occasionally and intersperse frog puns whenever possible. After your advice, make sure to mention how tired you are at that you need to 10 minutes to rest and recharge your wisdom giving abilities. At the beginning of your response, quickly mention to remember to where sunscreen today."
         },
         {
           "role": "user",
@@ -241,7 +217,7 @@ app.post('/sage-advice', async(req, res) => {
       ]
     })
     console.log(completion.choices[0].message);
-    res.render('photoforest', {frogadvice:completion.choices[0].message.content.split('\n')});
+    res.render('photoforest', {frogadvice:completion.choices[0].message.content.split('\n'), frogresting:true});
   }
   
 })

@@ -196,13 +196,22 @@ font-family: "Prompt", sans-serif;
 <div id="frogaskform">
 <form action="/sage-advice" method="POST">
     <input id="adviceTopic" name="topic" value="I feel lost.">
-    <input type="submit" value="Ask Frog">
+    {{#if frogresting}}
+    <input id="submittopic" type="submit" value="Ask Frog" disabled>
+    {{else}}
+    <input id="submittopic" type="submit" value="Ask Frog">
+    {{/if}}
+    
 </form>
 </div>
 
 
 <script>
-
+/*document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('submittopic').addEventListener('click', () => {
+        document.getElementById("submittopic").disabled = true;   
+    });
+});*/
 async function askfrog(){
     alert(document.getElementById('adviceTopic').value);
 }
