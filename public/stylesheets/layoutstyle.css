@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Jacquard+24&display=swap');
+
 @media (hover: none) and (pointer: coarse) and (orientation: portrait) {
     body {
-        background-size: auto 100vh;
+        background-size: auto 100svh;
         background-position: top;
         background-repeat: no-repeat;
         

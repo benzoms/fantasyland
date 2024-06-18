@@ -276,7 +276,8 @@
     transform: translateX(30%);
 
     
-    background-color: #e0e0e0;
+    background: rgb(218,94,27);
+background: linear-gradient(90deg, rgba(218,94,27,1) 0%, rgba(255,252,0,1) 28%, rgba(0,209,31,1) 100%);
     border-radius: 25px;
     overflow: hidden;
     /* margin-top:75vh; */
@@ -287,11 +288,16 @@
     
     
 }
+#progresstext{
+    line-height: 30px;
+    font-size: 25px;
+}
 
 .progress-bar {
     height: 30px;
+    float:right;
     width: 0;
-    background-color: #76c7c0;
+    background-color: #e0e0e0;
     text-align: center;
     line-height: 30px;
     font-size: 25px;
@@ -350,6 +356,22 @@
     }
 }
 
+#wisefrog {
+    
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
+    height: 150px;
+    width: 150px;
+    
+}
+#wisefrog img{
+    
+    height: 150px;
+    width:150px;
+    
+    
+}
 </style> 
   <div class="banner">
     <div class="scrolling-text">JUNE 17: uv index high of 6 not too bad but still wear SUNSCREEN </div>
@@ -378,9 +400,10 @@
         <p id="reunion-title">reunion in...</p>
         <div style="text-align: center;">
             <div class="progress">
+                <text id="progresstext" class="progress-text">0%</text>
             <div id="progressbar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
                 aria-valuemax="100">
-                <text class="progress-text">0%</text>
+                
             </div>
         </div>
         </div>
@@ -416,6 +439,9 @@
     </div>
   </div> --}}
 </div>
+{{!-- <div id="wisefrog">
+    <img src="../images/assets/animals/potionfrog.gif">
+</div> --}}
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -460,8 +486,8 @@
     // Update the progress bar
     const progressBar = document.getElementById('progressbar');
     progressBar.setAttribute('aria-valuenow', progress);
-    progressBar.style.width = progress + "%";
+    progressBar.style.width = (100-progress) + "%";
     // progressBar.innerHTML = progress + "%";
-    progressBar.innerHTML = decprogress.toString().substring(0, 6) + "%";
+    document.getElementById('progresstext').innerHTML = decprogress.toString().substring(0, 6) + "%";
 });
 </script>
