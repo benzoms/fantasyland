@@ -151,7 +151,7 @@ let limit = new Date(0);
 
   function setNewLimit() {
     const now = new Date();
-    limit = new Date(now.getTime() + 10 * 60000);
+    limit = new Date(now.getTime() + 10 * 60000); //30 * 60000 30 min
   }
 
 app.get('/photo-forest', (req, res) => {
@@ -197,18 +197,19 @@ app.get('/egg-garden', async(req, res) => {
 import OpenAI from 'openai'
 const openai = new OpenAI({ apiKey:process.env.OPENAI_API_KEY });
 app.post('/sage-advice', async(req, res) => {
-  setNewLimit();
+  if(checkLimit()=='okay'){
+    setNewLimit();
   if(!req.body.topic){
     res.render('photoforest', {frogadvice:'Somethin wrong come back later\n'});
   }else{
     
-    const prompt = "Give me advice on this: " +req.body.topic;
+    const prompt = "Be brief and chosen with your words, speak like a learned philosopher and wizard. Give me advice on this: " +req.body.topic;
     const completion = await openai.chat.completions.create({
       "model": "gpt-3.5-turbo",
       "messages": [
         {
           "role": "system",
-          "content": "You are a mystical frog tasked with giving advice. You will be given a topic on which you should give wise, sage, advice (if possible use a frog metaphor). In all your responses, say *ribbit* occasionally and intersperse frog puns whenever possible. After your advice, make sure to mention how tired you are at that you need to 10 minutes to rest and recharge your wisdom giving abilities. At the beginning of your response, quickly mention to remember to where sunscreen today."
+          "content": "Deep within the enchanted Photo Forest, you live in a cozy burrow beneath an ancient tree. You spend your days in quiet contemplation and studying ancient tomes, delighting in visits from travelers and adventurers. Offering sage advice and a warm cup of herbal tea, you guide visitors with simple yet profound wisdom. The grateful forest creatures ensure your life is rich in nature's joys and appreciation from those you help. You are a mystical frog tasked with giving advice. You will be given a topic on which you should give wise, sage, advice (if possible use a frog metaphor). In all your responses, say *ribbit* occasionally and intersperse frog puns whenever possible. After your advice, make sure to mention how tired you are at that you need to 10 minutes to rest and recharge your wisdom giving abilities. At the beginning of your response, quickly mention to remember to where sunscreen today.."
         },
         {
           "role": "user",
@@ -219,6 +220,10 @@ app.post('/sage-advice', async(req, res) => {
     console.log(completion.choices[0].message);
     res.render('photoforest', {frogadvice:completion.choices[0].message.content.split('\n'), frogresting:true});
   }
+  }else{
+    res.redirect('/photo-forest');
+  }
+  
   
 })
 app.post('/sage-advice2', async(req, res) => {
