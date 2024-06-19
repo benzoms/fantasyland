@@ -140,7 +140,7 @@ let limit = new Date(0);
       const timeDifference = limit - now;
       const minutes = Math.floor(timeDifference / 60000);
       const seconds = ((timeDifference % 60000) / 1000).toFixed(0);
-      return `I am still *ribbit* resting. Return in ${minutes} minutes and ${seconds} seconds.`;
+      return `I am still resting. Return in ${minutes} minutes and ${seconds} seconds.`;
     } else {
       // Set the limit datetime to 5 minutes from now
       
@@ -168,6 +168,22 @@ app.get('/photo-forest', (req, res) => {
   }
   
 });
+
+app.get('/mamabear', (req, res) => {
+  let cl = checkLimit();
+  console.log(cl);
+  console.log(typeof cl);
+  console.log(limit);
+  if(cl != 'okay'){
+    res.render("mamabear", {frogadvice:(String(cl)+'\n').split('\n'), frogresting:true});
+  }else{
+    
+    res.render("mamabear", {frogadvice:'How may I guide you today, Julia?\n'.split('\n')});
+   
+  }
+  
+});
+
 app.get('/library', (req, res) => {
   res.render("library");
 });
@@ -227,6 +243,36 @@ app.post('/sage-advice', async(req, res) => {
   
 })
 app.post('/sage-advice2', async(req, res) => {
+  if(checkLimit()=='okay'){
+    setNewLimit();
+  if(!req.body.topic){
+    res.render('mamabear', {frogadvice:'Somethin wrong come back later\n'});
+  }else{
+    
+    const prompt = "Be brief and chosen with your words, speak like a learned philosopher and caring mother. Give me advice on this: " +req.body.topic;
+    const completion = await openai.chat.completions.create({
+      "model": "gpt-3.5-turbo",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Momo the bear, a mama bear tasked with giving another mama bear advice. Your traits are kind, caring, generous, maternal, fierce, strong-willed, and judicious. You will be given a topic on which you should give advice (if possible use a bear or forest metaphor). In all your responses, say *hmph* occasionally and intersperse bear,honey, or cub puns whenever possible. After your advice, make sure to mention how tired you are at that you need to 10 minutes to rest and recharge your wisdom giving abilities."
+        },
+        {
+          "role": "user",
+          "content": prompt
+        }
+      ]
+    })
+    console.log(completion.choices[0].message);
+    res.render('mamabear', {frogadvice:completion.choices[0].message.content.split('\n'), frogresting:true});
+  }
+  }else{
+    res.redirect('/mamabear');
+  }
+  
+  
+})
+app.post('/sage-advice3', async(req, res) => {
   // console.log(req.body.topic);
   
   // console.log(completion.choices[0].message);
