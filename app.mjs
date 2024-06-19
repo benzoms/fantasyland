@@ -170,7 +170,7 @@ app.get('/photo-forest', (req, res) => {
 });
 
 app.get('/status', (req, res) => {
-  res.send({ "status": "200" })
+  res.status(200).send({ "status": "200" })
 });
 
 app.get('/mamabear', (req, res) => {
