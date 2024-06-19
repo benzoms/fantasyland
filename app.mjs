@@ -75,6 +75,8 @@ app.use((error, req, res, next) => {
   });
   next(error);
 });
+
+
 //route: GET /reviews/add - show the add review form
 // app.get('/reviews/add', (req, res) => {
 //   //update pageVisits
@@ -168,8 +170,12 @@ app.get('/photo-forest', (req, res) => {
   }
   
 });
-
-app.get('/status', (req, res) => {
+import cors from 'cors'
+const corsOptions = {
+  origin: '97.113.232.211',
+  optionsSuccessStatus: 200
+};
+app.get('/status',cors(corsOptions), (req, res) => {
   res.status(200).send({ "status": "200" })
 });
 
