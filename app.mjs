@@ -163,7 +163,7 @@ app.get('/photo-forest', (req, res) => {
     res.render("photoforest", {frogadvice:(String(cl)+'\n').split('\n'), frogresting:true});
   }else{
     
-    res.render("photoforest", {frogadvice:'Doth thou require guidance?\n'.split('\n')});
+    res.render("photoforest", {frogadvice:'Doth thou require guidance? Also, I will be moving to my dream swamp soon, so keep an eye out for any new icons on the map!\n'.split('\n')});
    
   }
   
