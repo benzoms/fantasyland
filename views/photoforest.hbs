@@ -149,7 +149,15 @@ font-family: "Prompt", sans-serif;
 }
 </style>
 <div class="slideshow-container">
-<div class="mySlides fade">
+    {{#each potd}}
+    <div class="mySlides fade">
+        <div class="numbertext">{{num}}{{photoCount}}</div>
+            <img src="{{src}}" style="height:30vh">
+        <div class="text">{{caption}}</div>
+    </div>
+    
+    {{/each}}
+{{!-- <div class="mySlides fade">
   <div class="numbertext">1 / 7</div>
   <img src="../images/potds/jun18.png" style="height:30vh">
   <div class="text">June 18 - On the subway back from Grad!</div>
@@ -185,7 +193,7 @@ font-family: "Prompt", sans-serif;
   <div class="numbertext">7 / 7</div>
   <img src="../images/potds/jun12.png" style="height:30vh">
   <div class="text">June 12 - Senior Formal!</div>
-</div>
+</div> --}}
 
 
 <a class="prev" onclick="plusSlides(-1)">❮</a>

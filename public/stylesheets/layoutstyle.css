@@ -91,6 +91,7 @@
       }
 
 }
-/* @media (hover: hover) and (pointer: fine) {
-    body{background-size:auto;}
-} */
+@media (hover: hover) and (pointer: fine) {
+    body{background-image:url('images/landscapebg.png');}
+    *{display: none;}
+}

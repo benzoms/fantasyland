@@ -155,24 +155,39 @@ let limit = new Date(0);
     const now = new Date();
     limit = new Date(now.getTime() + 10 * 60000); //30 * 60000 30 min
   }
-
+const potdslist = [
+  { day: 'jun20', caption: 'June 20 - Kissing at your pre-birthday dinner!', src: '' },
+  { day: 'jun19', caption: 'June 19 - Us looking famous on your rooftop', src: '' },
+  { day: 'jun18', caption: 'June 18 - On the subway back from Grad!', src: '' },
+  { day: 'jun17', caption: "June 17 - Unlocking in at Jonny's", src: '' },
+  { day: 'jun16', caption: 'June 16 - Crashing my Web Meeting with Milo', src: '' },
+  { day: 'jun15', caption: 'June 15 - Copelia!', src: '' },
+  { day: 'jun14', caption: "June 14 - Brunch after slumber at Bohan's!", src: '' },
+  { day: 'jun13', caption: "June 13 - Teethbrushin' at the Hingham House!", src: '' },
+  { day: 'jun12', caption: 'June 12 - Senior Formal!', src: '' }
+].map((item, index) => ({
+  ...item,
+  src: '../images/potds/' + item.day + '.png',
+  num: index+1
+}));
+const photoCount = " / " + String(potdslist[potdslist.length-1].num)
 app.get('/photo-forest', (req, res) => {
   let cl = checkLimit();
   console.log(cl);
   console.log(typeof cl);
   console.log(limit);
   if(cl != 'okay'){
-    res.render("photoforest", {frogadvice:(String(cl)+'\n').split('\n'), frogresting:true});
+    res.render("photoforest", {frogadvice:(String(cl)+'\n').split('\n'), frogresting:true, potd: potdslist, photoCount: photoCount});
   }else{
     
-    res.render("photoforest", {frogadvice:'Doth thou require guidance? Also, I will be moving to my dream swamp soon, so keep an eye out for any new icons on the map!\n'.split('\n')});
+    res.render("photoforest", {frogadvice:'Doth thou require guidance? Also, I will be moving to my dream swamp soon, so keep an eye out for any new icons on the map!\n'.split('\n'), potd: potdslist, photoCount: photoCount});
    
   }
   
 });
 import cors from 'cors'
 const corsOptions = {
-  origin: '97.113.232.211',
+  origin: '97.113.232.211', //https://benzoms.github.io
   optionsSuccessStatus: 200
 };
 app.get('/status',cors(corsOptions), (req, res) => {
