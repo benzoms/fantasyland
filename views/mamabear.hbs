@@ -117,12 +117,43 @@ font-family: "Prompt", sans-serif;
 #frogaskform{
     position: absolute;
     animation: none;
-    
-    bottom:10svh;
-    transform: translate(-50%, 0%);
+    bottom:5svh;
+    transform: translate(-50%, 0%);  
 }
-#frogaskform input{
+#frogaskform textarea{
+    width: 60svw;
+    font-size: 25px;
+    
+    background-color: rgba(237, 159, 102,0.5);
+    
+    padding: 10px 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: #eeedbe;
+    border-color: #ed9f66;
+    border-width: 5px;
+
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+#submittopic {
+    margin-top:5px;
+    width: 60svw;
     font-size: 30px;
+
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;  
+
+    background-color: #bd733d;
+    border-radius: 10px;
+    color: #eeedbe;
+    border-color: #ed9f66;
+    border-width: 5px;
 }
 .speech-bubble:after {
 	content: '';
@@ -166,7 +197,8 @@ font-family: "Prompt", sans-serif;
 </div>
 <div id="frogaskform">
 <form action="/sage-advice2" method="POST">
-    <input id="adviceTopic" name="topic" value="How do I stay calm?">
+    <textarea id="adviceTopic" name="topic" rows="4" cols="50">How do I stay motivated?</textarea>
+    <br>
     {{#if frogresting}}
     <input id="submittopic" type="submit" value="Ask Bear" disabled>
     {{else}}

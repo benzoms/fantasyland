@@ -4,4 +4,220 @@
        background-position: right 0% bottom 100%;
        overflow: hidden;
     }
+    #songswampiframe {
+        z-index:5;
+    }
+    #songcontainer {
+        position: absolute;
+        top:30%;
+        transform: translate(-50%, -50%);
+        width:80svw;
+    }
+    .songnav {
+        position: absolute;
+        top:50%;
+        
+         
+        width: 5%;
+        font-size: 30px;
+        color: white;
+        margin-top:-2%;
+        
+        transform: translate(-50%, -50%);
+        transform: scale(3, 5);
+    }
+    #songday {
+        position: absolute;
+        top: -40%;
+        right:50%;
+        transform: translate(50%, -50%);
+        
+          font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+background-color: #f8f39866;
+    background-color: rgba(248, 243, 152, 0.7);
+    padding: 0 10px;
+    box-sizing: border-box;
+    border-style: groove;
+    border-radius: 10px;
+    color: #428a64;
+    border-color: #cbf078;
+    border-width: 5px;
+    }
+
+    #wizardfrog {
+    position: absolute;
+    bottom: 10%;
+    left: 50vw;
+    height: 450px;
+    width: 450px;
+    
+    animation: boing 2s ease-in-out infinite alternate;
+    transform: translate(-50%,-50%);
+}
+#wizardfrog img{
+    height: 450px;
+    width:450px;
+}
+@keyframes boing {
+    from {
+      transform: scale(1, 1) translate(-50%, -20px);
+    }
+    to {
+      transform: scale(1, 1) translate(-50%, 0px);
+    }
+  }
+.speech-bubble {
+    bottom: 450px;
+	position: absolute;
+	background: rgba(255,255,255,0.8);
+	border-radius: .4em;
+    width:80vw;
+    transform: translate(-25%, 0%);
+}
+#frogaskform{
+    position: absolute;
+    animation: none;
+    bottom:5svh;
+    transform: translate(-50%, 0%);  
+}
+#frogaskform textarea{
+    width: 60svw;
+    font-size: 25px;
+    
+    background-color: rgba(248, 243, 152, 0.4);
+    
+    padding: 10px 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: #feffdf;
+    border-color: #cbf078;
+    border-width: 5px;
+
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+#submittopic {
+    margin-top:5px;
+    width: 60svw;
+    font-size: 30px;
+
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;  
+
+    background-color: #a2c11c;
+    border-radius: 10px;
+    color: #347352;
+    border-color: #cbf078;
+    border-width: 5px;
+}
+.submitdisabled {
+    background-color: #a2c11c;
+    color: #347352;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-top-color: rgba(255,255,255,0.8);
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -10px;
+	margin-bottom: -20px;
+}
+
+.speech-bubble h2{
+    margin: 15px;
+}
+#wizardfrog h2 {
+  font-family: "Walter Turncoat", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size:30px;
+}
 </style>
+
+<div id="songcontainer">
+    <h1 id="songday">Today</h1>
+    <a style="left:2%; text-align:left;" class="songnav" onclick="swapSong(-1);">❮</a>
+        <div style="text-align: center;">
+            <iframe id="songswampiframe" allow="autoplay *; encrypted-media *;" frameborder="0" height="150"
+                style="position:relative;border-style:solid;width:100%;max-width:660px;overflow:hidden;background:transparent;"
+                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+                src=""></iframe>
+        </div>
+    <a style="right:2%; text-align:right;" class="songnav" onclick="swapSong(1);">❯</a>
+</div>
+<div id="wizardfrog">
+    <hgroup class="speech-bubble">
+	    {{!-- <h1>Bubbly</h1> --}}
+        {{#each frogadvice}}
+            <h2> {{this}}</h2>
+        {{/each}}
+    </hgroup>
+    <img src="../images/assets/animals/wizardfrog.gif">
+</div>
+<div id="frogaskform">
+<form action="/sage-advice" method="POST">
+    {{!-- <input id="adviceTopic" name="topic" value="I feel lost."> --}}
+    <textarea id="adviceTopic" name="topic" rows="4" cols="50">How do I stay motivated?</textarea>
+    <br>
+    {{#if frogresting}}
+    <input id="submittopic" type="submit" value="Ask Frog" disabled>
+    {{else}}
+    <input id="submittopic" type="submit" value="Ask Frog">
+    {{/if}}
+    
+</form>
+</div>
+<script>
+    
+    let songIndex = 0;
+    const songurls = [
+        'https://embed.music.apple.com/us/album/make-me-cry/1471964051?i=1471964381',
+        'https://embed.music.apple.com/us/album/idle-town/1441067449?i=1441067450',
+        'https://embed.music.apple.com/us/album/stardust-remastered/757369860?i=757369866',
+        'https://embed.music.apple.com/us/album/cold-little-heart/1440832200?i=1440832486',
+        'https://embed.music.apple.com/us/album/prune-you-talk-funny/1421734636?i=1421735147',
+        'https://embed.music.apple.com/us/album/misses/1744185197?i=1744185828',
+        'https://embed.music.apple.com/us/album/peach/1460702037?i=1460702045',
+        'https://embed.music.apple.com/us/album/love-me-now/1170697676?i=1170698158',
+        'https://embed.music.apple.com/us/album/heaven-falls-fall-on-me/1430218150?i=1430220984'
+    ];
+    const songdays = [
+    'June 21', 'June 20', 'June 19', 
+    'June 18', 'June 17', 'June 16',
+    'June 15', 'June 14', 'June 13'];
+    function swapSong(dir){
+        
+        let newdir = songIndex+dir;
+        console.log(newdir);
+        if(newdir<0){
+            newdir = songdays.length-1;
+        }
+        if(newdir>=songdays.length){
+            newdir = 0;
+        }
+        songIndex=newdir;
+        document.getElementById('songday').textContent = songdays[songIndex];
+        document.getElementById('songswampiframe').setAttribute('src', songurls[songIndex]);
+        return newdir;
+
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('songday').textContent = songdays[songIndex];
+        document.getElementById('songswampiframe').setAttribute('src', songurls[songIndex]);
+    });
+</script>

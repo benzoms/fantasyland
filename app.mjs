@@ -108,7 +108,7 @@ app.get('/add-egg', async(req, res) => {
   res.render("addegg");
 });
 app.get('/library/reading-room', (req, res) => {
-  res.render("readingroom");
+  res.render("readingroom", {location: 'Reading Room 1'});
 });
 
 app.post('/add-egg/add', async(req, res) => {
@@ -134,27 +134,7 @@ app.post('/add-egg/add', async(req, res) => {
 //   message: String,
 //   createdAt: Date
 // });
-let limit = new Date(0);
 
-  function checkLimit() {
-    const now = new Date();
-    if (now < limit) {
-      const timeDifference = limit - now;
-      const minutes = Math.floor(timeDifference / 60000);
-      const seconds = ((timeDifference % 60000) / 1000).toFixed(0);
-      return `I am still resting. Return in ${minutes} minutes and ${seconds} seconds.`;
-    } else {
-      // Set the limit datetime to 5 minutes from now
-      
-      return 'okay';
-      alert("Good");
-    }
-  }
-
-  function setNewLimit() {
-    const now = new Date();
-    limit = new Date(now.getTime() + 10 * 60000); //30 * 60000 30 min
-  }
 const potdslist = [
   { day: 'jun21', caption: 'June 21 - Pre-domestic violence at the Vermont house?!', src: '' },
   { day: 'jun20', caption: 'June 20 - Kissing at your pre-birthday dinner!', src: '' },
@@ -173,19 +153,11 @@ const potdslist = [
 }));
 const photoCount = " / " + String(potdslist[potdslist.length-1].num)
 app.get('/photo-forest', (req, res) => {
-  let cl = checkLimit();
-  console.log(cl);
-  console.log(typeof cl);
-  console.log(limit);
-  if(cl != 'okay'){
-    res.render("photoforest", {frogadvice:(String(cl)+'\n').split('\n'), frogresting:true, potd: potdslist, photoCount: photoCount});
-  }else{
-    
-    res.render("photoforest", {frogadvice:'Doth thou require guidance? Also, I will be moving to my dream swamp soon, so keep an eye out for any new icons on the map!\n'.split('\n'), potd: potdslist, photoCount: photoCount});
-   
-  }
-  
+  res.render("photoforest", {location: 'Photo Forest', potd: potdslist, photoCount: photoCount});
 });
+
+
+
 import cors from 'cors'
 const corsOptions = {
   origin: '97.113.232.211', //https://benzoms.github.io
@@ -195,25 +167,10 @@ app.get('/status',cors(corsOptions), (req, res) => {
   res.status(200).send({ "status": "200" })
 });
 
-app.get('/mamabear', (req, res) => {
-  let cl = checkLimit();
-  console.log(cl);
-  console.log(typeof cl);
-  console.log(limit);
-  if(cl != 'okay'){
-    res.render("mamabear", {frogadvice:(String(cl)+'\n').split('\n'), frogresting:true});
-  }else{
-    
-    res.render("mamabear", {frogadvice:'How may I guide you today, Julia?\n'.split('\n')});
-   
-  }
-  
-});
-app.get('/songswamp', (req, res) => {
-  res.render("songswamp");
-});
+
+
 app.get('/library', (req, res) => {
-  res.render("library");
+  res.render("library", {location: 'Library' });
 });
 app.get('/egg-garden', async(req, res) => {
     //update pageVisits
@@ -234,45 +191,109 @@ app.get('/egg-garden', async(req, res) => {
     }else {
         console.log('found none' + e); //throw err
     }
-    res.render("egggarden", {eggs: eggList});
+    res.render("egggarden", {location: 'Egg Garden', eggs: eggList});
   });
 
-  
+let froglimit = new Date(0);
+let bearlimit = new Date(0);
+
+function checkLimit(lim) {
+  const now = new Date();
+  if (now < lim) {
+    const timeDifference = lim - now;
+    const minutes = Math.floor(timeDifference / 60000);
+    const seconds = ((timeDifference % 60000) / 1000).toFixed(0);
+    return `I am still resting. Return in ${minutes} minutes and ${seconds} seconds.`;
+  } else {  return 'okay';  }
+}
+function setNewLimit() {
+  const now = new Date();
+  return new Date(now.getTime() + 10 * 1000); //30 * 60000 30 min
+}
+
+app.get('/song-swamp', (req, res) => {
+  let cl = checkLimit(froglimit);
+  console.log(cl);
+  console.log(typeof cl);
+  console.log(froglimit);
+  if (cl != 'okay') {
+    res.render("songswamp", { location: 'Song Swamp', frogadvice: (String(cl) + '\n').split('\n'), frogresting: true });
+  } else {
+    res.render("songswamp", { location: 'Song Swamp', frogadvice: 'Welcome to my new home! Doth thou require guidance?\n'.split('\n') });
+  }
+});
+
+let recentFrogAdvice = 'Welcome to my new home! Doth thou require guidance?\n';
+app.get('/frog-result', (req, res) => {
+  let cl = checkLimit(froglimit);
+  console.log(cl);
+  console.log(typeof cl);
+  console.log(froglimit);
+  if (cl != 'okay') {
+    res.render("songswamp", { location: 'Song Swamp', frogadvice: ([recentFrogAdvice, (String(cl) + '\n')].join('\n')).split('\n'), frogresting: true });
+  } else {
+    res.render("songswamp", { location: 'Song Swamp', frogadvice: recentFrogAdvice.split('\n') });
+  }
+});
+
 import OpenAI from 'openai'
-const openai = new OpenAI({ apiKey:process.env.OPENAI_API_KEY });
-app.post('/sage-advice', async(req, res) => {
-  if(checkLimit()=='okay'){
-    setNewLimit();
-  if(!req.body.topic){
-    res.render('photoforest', {frogadvice:'Somethin wrong come back later\n'});
-  }else{
-    
-    const prompt = "Be brief and chosen with your words, speak like a learned philosopher and wizard. Give me advice on this: " +req.body.topic;
-    const completion = await openai.chat.completions.create({
-      "model": "gpt-3.5-turbo",
-      "messages": [
-        {
-          "role": "system",
-          "content": "Deep within the enchanted Photo Forest, you live in a cozy burrow beneath an ancient tree. You spend your days in quiet contemplation and studying ancient tomes, delighting in visits from travelers and adventurers. Offering sage advice and a warm cup of herbal tea, you guide visitors with simple yet profound wisdom. The grateful forest creatures ensure your life is rich in nature's joys and appreciation from those you help. You are a mystical frog tasked with giving advice. You will be given a topic on which you should give wise, sage, advice (if possible use a frog metaphor). In all your responses, say *ribbit* occasionally and intersperse frog puns whenever possible. After your advice, make sure to mention how tired you are at that you need to 10 minutes to rest and recharge your wisdom giving abilities. At the beginning of your response, quickly mention to remember to where sunscreen today.."
-        },
-        {
-          "role": "user",
-          "content": prompt
-        }
-      ]
-    })
-    console.log(completion.choices[0].message);
-    res.render('photoforest', {frogadvice:completion.choices[0].message.content.split('\n'), frogresting:true});
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+app.post('/sage-advice', async (req, res) => {
+  if (checkLimit(froglimit) == 'okay') {
+    if (!req.body.topic) {
+      res.render('photoforest', { frogadvice: 'Somethin wrong come back later\n' });
+    } else {
+      const prompt = "Be brief and chosen with your words, speak like a learned philosopher and wizard. Give me advice on this: " + req.body.topic;
+      const completion = await openai.chat.completions.create({
+        "model": "gpt-3.5-turbo",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Deep within the enchanted Photo Forest, you live in a cozy burrow beneath an ancient tree. You spend your days in quiet contemplation and studying ancient tomes, delighting in visits from travelers and adventurers. Offering sage advice and a warm cup of herbal tea, you guide visitors with simple yet profound wisdom. The grateful forest creatures ensure your life is rich in nature's joys and appreciation from those you help. You are a mystical frog tasked with giving advice. You will be given a topic on which you should give wise, sage, advice (if possible use a frog metaphor). In all your responses, say *ribbit* occasionally and intersperse frog puns whenever possible. After your advice, make sure to mention how tired you are at that you need to 10 minutes to rest and recharge your wisdom giving abilities. At the beginning of your response, quickly mention to remember to where sunscreen today.."
+          },
+          {
+            "role": "user",
+            "content": prompt
+          }
+        ]
+      })
+      console.log(completion.choices[0].message);
+      recentFrogAdvice = completion.choices[0].message.content;
+      froglimit = setNewLimit();
+      res.redirect('/frog-result')
+      //res.render('photoforest', {frogadvice:completion.choices[0].message.content.split('\n'), frogresting:true});
+    }
+  } else {
+    res.redirect('/song-swamp');
   }
+});
+
+app.get('/mamabear', (req, res) => {
+  let cl = checkLimit(bearlimit);
+  console.log(cl);
+  console.log(typeof cl);
+  console.log(bearlimit);
+  if(cl != 'okay'){
+    res.render("mamabear", {frogadvice:(String(cl)+'\n').split('\n'), frogresting:true});
   }else{
-    res.redirect('/photo-forest');
+    res.render("mamabear", {frogadvice:'How may I guide you today, Julia?\n'.split('\n')});
   }
-  
-  
-})
+});
+let recentBearAdvice = 'How may I guide you today, Julia?\n';
+app.get('/bear-result', (req, res) => {
+  let cl = checkLimit(bearlimit);
+  console.log(cl);
+  console.log(typeof cl);
+  console.log(bearlimit);
+  if (cl != 'okay') {
+    res.render("mamabear", { frogadvice: ([recentBearAdvice, (String(cl) + '\n')].join('\n')).split('\n'), frogresting: true });
+  } else {
+    res.render("mamabear", { frogadvice: recentBearAdvice.split('\n') });
+  }
+});
 app.post('/sage-advice2', async(req, res) => {
-  if(checkLimit()=='okay'){
-    setNewLimit();
+  if(checkLimit(bearlimit)=='okay'){
+    
   if(!req.body.topic){
     res.render('mamabear', {frogadvice:'Somethin wrong come back later\n'});
   }else{
@@ -292,7 +313,9 @@ app.post('/sage-advice2', async(req, res) => {
       ]
     })
     console.log(completion.choices[0].message);
-    res.render('mamabear', {frogadvice:completion.choices[0].message.content.split('\n'), frogresting:true});
+    recentBearAdvice = completion.choices[0].message.content;
+    bearlimit = setNewLimit();
+    res.redirect('/bear-result')
   }
   }else{
     res.redirect('/mamabear');

@@ -29,7 +29,7 @@
 .slideshow-container {
     position: absolute;
     
-    transform: translate(-50%,20%);
+    transform: translate(-50%,50%);
 }
 .text {
 text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
@@ -155,45 +155,7 @@ font-family: "Prompt", sans-serif;
             <img src="{{src}}" style="height:30vh">
         <div class="text">{{caption}}</div>
     </div>
-    
     {{/each}}
-{{!-- <div class="mySlides fade">
-  <div class="numbertext">1 / 7</div>
-  <img src="../images/potds/jun18.png" style="height:30vh">
-  <div class="text">June 18 - On the subway back from Grad!</div>
-</div>
-<div class="mySlides fade">
-  <div class="numbertext">2 / 7</div>
-  <img src="../images/potds/jun17.png" style="height:30vh">
-  <div class="text">June 17 - Unlocking in at Jonny's</div>
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">3 / 7</div>
-  <img src="../images/potds/jun16.png" style="height:30vh">
-  <div class="text">June 16 - Crashing my Web Meeting with Milo</div>
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">4 / 7</div>
-  <img src="../images/potds/jun15.png" style="height:30vh">
-  <div class="text">June 15 - Copelia!</div>
-</div>
-<div class="mySlides fade">
-  <div class="numbertext">5 / 7</div>
-  <img src="../images/potds/jun14.png" style="height:30vh">
-  <div class="text">June 14 - Brunch after slumber at Bohan's!</div>
-</div>
-<div class="mySlides fade">
-  <div class="numbertext">6 / 7</div>
-  <img src="../images/potds/jun13.png" style="height:30vh">
-  <div class="text">June 13 - Teethbrushin' at the Hingham House!</div>
-</div>
-<div class="mySlides fade">
-  <div class="numbertext">7 / 7</div>
-  <img src="../images/potds/jun12.png" style="height:30vh">
-  <div class="text">June 12 - Senior Formal!</div>
-</div> --}}
 
 
 <a class="prev" onclick="plusSlides(-1)">❮</a>
@@ -203,26 +165,7 @@ font-family: "Prompt", sans-serif;
 <br>
 
 
-<div id="wizardfrog">
-    <hgroup class="speech-bubble">
-	    {{!-- <h1>Bubbly</h1> --}}
-        {{#each frogadvice}}
-            <h2> {{this}}</h2>
-        {{/each}}
-    </hgroup>
-    <img src="../images/assets/animals/wizardfrog.gif">
-</div>
-<div id="frogaskform">
-<form action="/sage-advice" method="POST">
-    <input id="adviceTopic" name="topic" value="I feel lost.">
-    {{#if frogresting}}
-    <input id="submittopic" type="submit" value="Ask Frog" disabled>
-    {{else}}
-    <input id="submittopic" type="submit" value="Ask Frog">
-    {{/if}}
-    
-</form>
-</div>
+
 
 
 <script>
