@@ -208,7 +208,7 @@ function checkLimit(lim) {
 }
 function setNewLimit() {
   const now = new Date();
-  return new Date(now.getTime() + 10 * 1000); //30 * 60000 30 min
+  return new Date(now.getTime() + 10 * 60000); //30 * 60000 30 min
 }
 
 app.get('/song-swamp', (req, res) => {
