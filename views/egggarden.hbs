@@ -57,7 +57,7 @@
 }
 
 .general-container {
-
+pointer-events: none;
     /* border-style:solid; */
     position: absolute;
     /*width: auto;
@@ -101,10 +101,11 @@
     height: 30px;
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 50%;
-    animation: boingShadow 2s ease-in-out infinite alternate;
+    animation: miniBoingShadow 2s ease-in-out infinite alternate;
   }
   
   .egg {
+    pointer-events: auto;
     cursor: pointer;
     margin: 20px;
     margin-bottom:5px;
@@ -123,6 +124,10 @@
 
   div.general-container:last-child div.egg{
     animation: boing 2s ease-in-out infinite alternate;
+    box-shadow: inset -5px -10px rgba(168, 164, 176, 0.5);
+  }
+    div.general-container:last-child div.shadow{
+    animation: boingShadow 2s ease-in-out infinite alternate;
     box-shadow: inset -5px -10px rgba(168, 164, 176, 0.5);
   }
 
@@ -210,18 +215,18 @@
 
   @keyframes miniBoing {
     from {
-      transform: scale(0.6, 0.6) translateY(-10px);
+      transform: scale(0.4, 0.4) translateY(-10px);
     }
     to {
-      transform: scale(0.8, 0.4) translateY(0px);
+      transform: scale(0.45, 0.3) translateY(0px);
     }
   }
   @keyframes miniBoingShadow {
     from {
-      transform: scale(0.9, 1);
+      transform: scale(0.5, 0.6) translateY(20px);
     }
     to {
-      transform: scale(1.2, 0.8);
+      transform: scale(0.7, 0.4) translateY(40px);
     }
   }
 #newsfeed {

@@ -127,6 +127,7 @@
         transform: translate(-50%, -50%);
     }
     #locbannerdiv img {
+      position:absolute;
         /* position:absolute; */
         /* background-image: url('../images/assets/map/locationbanner.png'); */
         width:80svw;
@@ -136,12 +137,16 @@
         transform: translate(50%, -10%);
     }
     #locbannertext {
+      top:20svh;
+      width:80svw;
+      position:absolute;
         font-size:80px;
+        left: 50%;
     font-family: "Jacquard 24", system-ui;
   font-weight: 400;
   font-style: normal;
   margin-top: -23%;
-  transform: translate(50%, 50%);
+  transform: translate(0%,-40%);
     }
 }
 @media (hover: hover) and (pointer: fine) {
