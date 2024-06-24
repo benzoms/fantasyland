@@ -118,13 +118,13 @@
       }
 
     #locbannerdiv {
-        position:absolute;
+        
         /* background-image: url('../images/assets/map/locationbanner.png'); */
         width:80svw;
         height: 10svh;
         z-index:99;
         text-align: center;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, 50%);
     }
     #locbannerdiv img {
       position:absolute;
@@ -137,16 +137,16 @@
         transform: translate(50%, -10%);
     }
     #locbannertext {
-      top:20svh;
+      margin-top:5svh;
       width:80svw;
-      position:absolute;
+      height: 10svh;
         font-size:80px;
-        left: 50%;
+        
     font-family: "Jacquard 24", system-ui;
   font-weight: 400;
   font-style: normal;
   margin-top: -23%;
-  transform: translate(0%,-40%);
+  transform: translate(50%,50%);
     }
 }
 @media (hover: hover) and (pointer: fine) {

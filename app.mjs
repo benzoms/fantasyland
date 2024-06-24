@@ -136,7 +136,7 @@ app.post('/add-egg/add', async(req, res) => {
 // });
 
 const potdslist = [
-  { day: 'jun23', caption: 'June 22 - Post sleep over at in Hudson!', src: '' },
+  { day: 'jun23', caption: 'June 23 - Post sleep over at in Hudson!', src: '' },
   { day: 'jun22', caption: 'June 22 - The first night I REALLY slept over', src: '' },
   { day: 'jun21', caption: 'June 21 - Pre-domestic violence at the Vermont house?!', src: '' },
   { day: 'jun20', caption: 'June 20 - Kissing at your pre-birthday dinner!', src: '' },
