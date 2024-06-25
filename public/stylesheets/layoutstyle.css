@@ -55,7 +55,7 @@
         width: 80vw;
         top: 10vh;
         /* transform: translate(-5%, 55%); */
-        
+        image-rendering: pixelated;
       }
       #map-img{
         /* pointer-events: none; */
