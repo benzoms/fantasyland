@@ -136,6 +136,7 @@ app.post('/add-egg/add', async(req, res) => {
 // });
 
 const potdslist = [
+  { day: 'jul1', caption: 'July 1 - Sleepover at yours!', src: '' },
   { day: 'jun30', caption: 'June 30 - Us looking cute at the rendezvous!', src: '' },
   { day: 'jun29', caption: 'June 29 - My girlfriend getting eaten by a shark!!!', src: '' },
   { day: 'jun28', caption: 'June 28 - Copelia againnnn', src: '' },
