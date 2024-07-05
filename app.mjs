@@ -136,6 +136,8 @@ app.post('/add-egg/add', async(req, res) => {
 // });
 
 const potdslist = [
+  { day: 'jul5', caption: 'July 5 - Us on a trip!', src: '' },
+  { day: 'jul4', caption: 'July 4 - Caring for your base tan', src: '' },
   { day: 'jul3', caption: 'July 3 - Anotha toothbrushin\' pic feat. Prince Milo', src: '' },
   { day: 'jul2', caption: 'July 2 - Spoon-mirror dimension versions of ourselves', src: '' },
   { day: 'jul1', caption: 'July 1 - Sleepover at yours!', src: '' },
