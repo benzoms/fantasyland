@@ -70,7 +70,7 @@
         cursor: pointer;
         position: absolute;
         z-index: 51;
-        height: 90px;
+        height: 75px;
         width: auto;
         transition: transform 0.2s ease-in-out;
       }
@@ -101,6 +101,18 @@
         top: 65%;
         background: radial-gradient(rgba(0,0,0,0.1) 0%, rgba(211, 127, 209, 0.6) 60%, rgba(211, 127, 209, 0.8) 100%);
         box-shadow: 0px 0px 50px 25px rgba(211, 127, 209, 0.9);
+      }
+      #theprogressbar {
+        left: 40%;
+        top: 43%;
+        background: radial-gradient(rgba(0,0,0,0.1) 0%, rgba(233, 120, 156, 0.6) 60%, rgba(233, 120, 156, 0.8) 100%);
+        box-shadow: 0px 0px 50px 25px rgba(233, 120, 156, 0.9);
+      }
+      #oldeggs {
+        left: 20%;
+        top: 62%;
+        background: radial-gradient(rgba(0,0,0,0.1) 0%, rgba(213, 226, 99, 0.6) 60%, rgba(213, 226, 99, 0.8) 100%);
+        box-shadow: 0px 0px 50px 25px rgba(213, 226, 99, 0.9);
       }
       .locicon {
         animation: bob 2s ease-in-out infinite alternate;

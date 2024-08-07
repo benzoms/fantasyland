@@ -1,0 +1,313 @@
+<style>
+    body{
+       background-image: url("../images/gifs/flowergarden.gif");
+       overflow:hidden;
+       background-position:fixed;
+        
+        /*background-position: top;
+        background-repeat: no-repeat;
+        background-size:  auto 180svh;*/
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .eggwrapper {
+        position: fixed;
+        left: 0;
+        bottom: 15svh;
+        height:20svh;
+    }
+    #tab {
+        height:inherit;
+        width:100svw;
+        text-align: center;
+        display: flex;
+        overflow: auto;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+      }
+      #tab > * {
+        
+        flex-shrink: 0;
+        width: 10%;
+        scroll-snap-align: start;
+        scroll-margin-top: 1rem;
+
+        /*padding: 1rem 0.4rem;*/
+        padding: 20px 50px;
+      }
+
+      .eggmsg {
+    position: absolute; pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    column-gap: 0;
+    z-index: 30;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-color: #faf3c0;
+    border-style: dashed;
+    width: 60vw;
+    height:auto;
+    
+    
+    font-size: 30px;
+    /* line-height: 20px; */
+    text-align: center;
+    text-wrap:wrap;
+
+    
+    opacity: 0;
+    transition: opacity 0.5s;
+    transform: translate(-35%, 100%);
+    }
+
+
+
+.eggmsg text{
+    
+    text-wrap: wrap;
+    height: auto;
+    margin: 8px;
+    margin-bottom: 0;
+    width: 58vw;
+      font-family: "Prompt", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+    
+    color: rgb(0, 0, 0);
+    overflow-wrap: break-word;
+    
+    /* border-style:solid; */
+}
+
+.general-container {
+pointer-events: none;
+    /* border-style:solid; */
+    
+    /*width: auto;
+    z-index:31;
+    bottom: 1vh;
+    left: 50vw;*/
+    width: 100px;
+    /*transform: translate(-50%, 20%);*/
+  }
+  /*#egg2 {
+    
+    position: absolute;
+    padding-left: 15px;
+    z-index:28;
+    bottom: 3vh;
+    left: 25vw;
+  }
+
+  #egg3 {
+    
+    position: absolute;
+    padding-left: 15px;
+    z-index:30;
+    bottom: 6vh;
+    left: 40vw;
+  }
+
+  #egg4 {
+    position: absolute;
+    padding-left: 15px;
+    z-index:29;
+    bottom: 2vh;
+    left: 36vw;
+  }*/
+
+  .shadow {
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+    width: 100px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    animation: boingShadow 2s ease-in-out infinite alternate;
+  }
+  
+  .egg {
+    pointer-events: auto;
+    cursor: pointer;
+    margin: 20px;
+    margin-bottom:5px;
+    width: 100px;
+    height: 125px;
+    background-color: #faf3c0;
+    border: 1px solid #000;
+    border-top-left-radius: 50% 60%;
+    border-top-right-radius: 50% 60%;
+    border-bottom-left-radius: 50% 40%;
+    border-bottom-right-radius: 50% 40%;
+    transform-origin: center bottom;
+    animation: boing 2s ease-in-out infinite alternate;
+    box-shadow: inset -5px -10px rgba(168, 164, 176, 0.5);
+  }
+
+     .show {
+        opacity: 1;
+        z-index: 60;
+      }
+    .spots {
+    position: absolute;
+    left: 30px;
+    top: 20px;
+    height: 15px;
+    width: 10px;
+    background-color: #a8a4b0;
+    border-top-left-radius: 60% 60%;
+    border-top-right-radius: 40% 40%;
+    border-bottom-left-radius: 40% 40%;
+    border-bottom-right-radius: 60% 60%;
+  }
+  .spots:before {
+    position: absolute;
+    left: -10px;
+    top: 16px;
+    content: "";
+    display: block;
+    height: 13px;
+    width: 7px;
+    background-color: inherit;
+    border-top-left-radius: 60% 60%;
+    border-top-right-radius: 40% 40%;
+    border-bottom-left-radius: 40% 40%;
+    border-bottom-right-radius: 60% 60%;
+  }
+  .spots:after {
+    position: absolute;
+    left: 0px;
+    top: 25px;
+    content: "";
+    display: block;
+    height: 10px;
+    width: 5px;
+    background-color: inherit;
+    border-top-left-radius: 60% 60%;
+    border-top-right-radius: 40% 40%;
+    border-bottom-left-radius: 40% 40%;
+    border-bottom-right-radius: 60% 60%;
+  }
+  
+  @keyframes boing {
+    from {
+      transform: scale(1, 1) translateY(-20px);
+    }
+    to {
+      transform: scale(1.2, 0.8) translateY(0px);
+    }
+  }
+  @keyframes boingShadow {
+    from {
+      transform: scale(0.9, 1);
+    }
+    to {
+      transform: scale(1.2, 0.8);
+    }
+  }
+
+  @keyframes miniBoing {
+    from {
+      transform: scale(0.4, 0.4) translateY(-10px);
+    }
+    to {
+      transform: scale(0.45, 0.3) translateY(0px);
+    }
+  }
+  @keyframes miniBoingShadow {
+    from {
+      transform: scale(0.5, 0.6) translateY(20px);
+    }
+    to {
+      transform: scale(0.7, 0.4) translateY(40px);
+    }
+  }
+  #eggmsgwindow {
+    position: absolute;
+    width: 80svw;
+    height: 60svh;
+    transform: translate(-50%, 20%);
+    
+    display: block;
+    border: none;
+    background: none;
+    opacity: 1;
+  }
+
+  .eggmsg text{
+background-color: rgb(147, 172, 194);
+  }
+  .egg-label {
+    
+    text-align: center;
+     margin-left: 40px;
+    
+    animation: none;
+    font-size:50px;
+    color: rgb(172, 196, 220);
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+  }
+</style>
+
+<div class="eggwrapper">
+    
+
+    <div id="tab" class="tabs inliner">
+        {{#each eggs}}
+        <div class="general-container" id="egg{{eggnum}}" >
+            <div class="eggmsg" id="eggmsg{{eggnum}}">
+                {{#each (split message delimiter="\r\n")}}
+                <text>{{this}}</text>
+                {{/each}}
+            </div>
+            
+            <div class="egg" style="animation-duration: {{animationTime}}s;">
+                <div class="spots" style="background-color: {{spotcolor}};"></div>
+                
+            </div>
+            <text class="egg-label"> {{eggnum}}</text>
+            
+        </div>
+        {{/each}}
+        
+    </div>
+    
+</div>
+
+<div class="eggmsg" id="eggmsgwindow">
+ 
+</div>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+
+
+            const containers = document.querySelectorAll('.general-container');
+
+            containers.forEach(container => {
+                container.querySelector('.egg').addEventListener('click', () => {
+                    console.log(container.id + "clicked");
+                    const eggMsg = container.querySelector('.eggmsg');
+                    console.log("show "+eggMsg.id);
+                    console.log(eggMsg);
+                    document.getElementById('eggmsgwindow').innerHTML = eggMsg.innerHTML;
+                    /*if (eggMsg.classList.contains('show')) {
+                        eggMsg.classList.remove('show');
+                    } else {
+                        eggMsg.classList.add('show');
+                    }*/
+                    
+                });
+            });
+        });
+
+</script>

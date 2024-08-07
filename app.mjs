@@ -135,6 +135,64 @@ app.post('/add-egg/add', async(req, res) => {
 //   createdAt: Date
 // });
 
+const dateList = [
+  { start: 'Jul 31, 2024, 08:00:00', end: 'Aug 31, 2024 10:15:00', label: 'Until I see you again', arianow: '', width: '', percentage: ''},
+  { start: 'Jul 31, 2024, 08:00:00', end: 'Sep 3, 2024 10:15:00', label: 'School Starts!', arianow: '', width: '', percentage: ''},
+  { start: 'Jul 31, 2024, 08:00:00', end: 'Sep 1, 2024 10:15:00', label: '4 months!', arianow: '', width: '', percentage: ''},
+  { start: 'Jul 31, 2024, 08:00:00', end: 'May 15, 2025 10:15:00', label: 'Graduation!', arianow: '', width: '', percentage: ''}
+]
+const updateArias = (list) => list.map(item => {
+  const countDownDate = new Date(item.end).getTime();
+  const startDate = new Date(item.start).getTime();
+
+  // Get today's date and time
+  const now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  const distanceWhole = countDownDate - startDate;
+  const distanceLeft = countDownDate - now;
+
+  // Time calculations for minutes and percentage progressed
+  const minutesLeft = Math.floor(distanceLeft / (1000 * 60));
+  const minutesTotal = Math.floor(distanceWhole / (1000 * 60));
+  const progress = Math.floor(((minutesTotal - minutesLeft) / minutesTotal) * 100);
+
+  const decminutesLeft = (distanceLeft / (1000 * 60));
+const decminutesTotal = (distanceWhole / (1000 * 60));
+const decprogress = (((decminutesTotal - decminutesLeft) / decminutesTotal) * 100);
+
+  return {
+    ...item,
+    arianow: progress,
+    width: 100-progress,
+    percentage: decprogress.toString().substring(0, 6) + "%"
+  }
+})
+console.log(updateArias(dateList));
+app.get('/the-progress-bar', async(req, res) => {
+  res.render("progressbars", {location: 'The Progress Bar', bar: updateArias(dateList)});
+});
+
+
+
+app.get('/old-eggs', async(req, res) => {
+  const e = await Egg.find({});
+  const eggList = [];
+
+  if(e+'') {
+      e.forEach(function(eg) {
+      const newE = new EggObj(eg);
+      eggList.push(newE);    
+      });   
+
+  }else {
+      console.log('found none' + e); //throw err
+  }
+  res.render("oldegggarden", {location: 'Old Egg Garden', eggs: eggList});
+});
+
+
+
 const potdslist = [
   { day: 'jul5', caption: 'July 5 - Us on a trip!', src: '' },
   { day: 'jul4', caption: 'July 4 - Caring for your base tan', src: '' },
@@ -205,7 +263,8 @@ app.get('/egg-garden', async(req, res) => {
     }else {
         console.log('found none' + e); //throw err
     }
-    res.render("egggarden", {location: 'Egg Garden', eggs: eggList});
+    const newEggs = eggList.filter(egg => egg.eggnum <= 24)
+    res.render("egggarden", {location: 'Egg Garden', eggs: newEggs});
   });
 
 let froglimit = new Date(0);

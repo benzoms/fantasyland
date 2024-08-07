@@ -1,0 +1,97 @@
+<style>
+    body {
+        background-image: url("../images/gifs/bar.gif");
+       overflow:hidden;
+    }
+#pbarcontent {
+    margin-top: 15svh;
+    width: 90svw;
+    border: 12px ridge #8B540F;
+    background-color: #75470f79;
+    padding: 15px;
+    
+}
+.progress {
+    
+    height: 30px;
+    background: rgb(218,94,27);
+    background: linear-gradient(90deg, rgba(218,94,27,1) 0%, rgba(255,252,0,1) 28%, rgba(0,209,31,1) 100%);
+    border-radius: 25px;
+    overflow: hidden;
+}
+.pbartextcontainer {
+    
+    
+    padding-bottom: 50px;
+    font-size: 20px;
+    display:block;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+.pbartextcontainer > h3{
+    margin-top: 0;
+}
+.progress-label, .percentage {
+    float:left;
+    display: inline;
+}
+.percentage {
+    float: right;
+}
+.progress-text{
+    position: absolute;
+    line-height: 30px;
+    font-size: 20px;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+.progress-bar {
+    height: 30px;
+    float:right;
+    width: 0;
+    background-color: #b2ccee;
+    text-align: center;
+    line-height: 30px;
+    font-size: 25px;
+    color: black;
+    transition: width 0.4s ease;
+    background-image: url("../images/gifs/dogsrunning.GIF");
+    background-size: 40svw 4svh;
+    background-repeat:repeat-x;
+    background-position: right 50% bottom 50%;
+    overflow: hidden;
+}
+.progress-container {
+    border: 6px ridge #8f632e;
+    background-color: #cea675;
+    margin: 30px auto;
+    padding: 15px 10px;
+}
+#dogsrunning {
+    position: absolute;
+    top: 5%;
+    width: 100svw;
+    /* transform: translateX(-3%); */
+}
+</style>
+<div id="pbarcontent" style="text-align:center;">
+    {{#each bar}}
+    <div class="progress-container">
+        <div class="pbartextcontainer">
+            <h3 class="progress-label">{{label}}</h3> 
+            <h3 class="percentage">{{percentage}}</h3>
+        </div>
+        <br>
+        <div class="progress">
+            
+            <div id="progressbar" class="progress-bar" role="progressbar" aria-valuenow="{{arianow}}" aria-valuemin="0"
+                aria-valuemax="100" style="width: {{width}}%;">
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
