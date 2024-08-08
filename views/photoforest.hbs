@@ -32,18 +32,25 @@
     transform: translate(-50%,50%);
 }
 .text {
-text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-font-family: "Prompt", sans-serif;
-  font-weight: 500;
+font-family: "Shantell Sans", cursive;
+  font-optical-sizing: auto;
+  font-weight: 600;
   font-style: normal;
-  color: #f2f2f2;
-  font-size: 25px;
+  font-variation-settings:
+    "BNCE" 50,
+    "INFM" 100,
+    "SPAC" 0;
+
+
+
+  color: #403939;
+  font-size: 30px;
   padding: 8px 12px;
   position: absolute;
   bottom: 0;
   width: auto;
   text-align: center;
-  background-color: rgba(0,0,0,0.5);
+  
   overflow-x:hidden;
   
 }
@@ -62,6 +69,7 @@ font-family: "Prompt", sans-serif;
 }
 
 .prev, .next {
+  transform: translateX(-50px);
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -75,9 +83,13 @@ font-family: "Prompt", sans-serif;
   border-radius: 0 3px 3px 0;
   user-select: none;
 }
+.prev {
+  transform: translateX(-50px);
+}
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
+  transform: translateX(50px);
 }
 
 .dot {
@@ -147,12 +159,21 @@ font-family: "Prompt", sans-serif;
   font-style: normal;
   font-size:30px;
 }
+.potdpng{
+  border-top: 30px solid #ffffff;
+border-right: 30px solid #ffffff;
+border-bottom: 100px solid #ffffff;
+border-left: 30px solid #ffffff;
+-webkit-box-shadow: 10px 10px 31px 12px rgba(0,0,0,0.51);
+-moz-box-shadow: 10px 10px 31px 12px rgba(0,0,0,0.51);
+box-shadow: 10px 10px 31px 12px rgba(0,0,0,0.51);
+}
 </style>
 <div class="slideshow-container">
     {{#each potd}}
     <div class="mySlides fade">
-        <div class="numbertext">{{num}}{{photoCount}}</div>
-            <img src="{{src}}" style="height:30vh">
+        <div class="numbertext">{{num}}{{../photoCount}}</div>
+            <img class='potdpng' src="{{src}}" style="height:30vh">
         <div class="text">{{caption}}</div>
     </div>
     {{/each}}
