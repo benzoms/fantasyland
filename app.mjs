@@ -136,7 +136,7 @@ app.post('/add-egg/add', async(req, res) => {
 // });
 
 const dateList = [
-  { start: 'Jul 31, 2024, 08:00:00', end: 'Aug 31, 2024 10:15:00', label: 'Until I see you again', arianow: '', width: '', percentage: ''},
+  { start: 'Sep 06, 2024 15:05:00', end: 'Oct 25, 2024 10:15:00', label: 'Until I see you again', arianow: '', width: '', percentage: ''},
   { start: 'Jul 31, 2024, 08:00:00', end: 'Sep 3, 2024 10:15:00', label: 'School Starts!', arianow: '', width: '', percentage: ''},
   { start: 'Jul 31, 2024, 08:00:00', end: 'Sep 1, 2024 10:15:00', label: '4 months!', arianow: '', width: '', percentage: ''},
   { start: 'Jul 31, 2024, 08:00:00', end: 'May 15, 2025 10:15:00', label: 'Graduation!', arianow: '', width: '', percentage: ''}
