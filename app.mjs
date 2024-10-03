@@ -194,6 +194,7 @@ app.get('/old-eggs', async(req, res) => {
 
 
 const potdslist = [
+  { day: 'oct3', caption: 'October 3 -  Facemasks in your twin bed :)!', src: '' },
   { day: 'oct2', caption: 'October 2 -  You in a boat in Amsterdam!', src: '' },
   { day: 'oct1', caption: 'October 1 -  Us (me) dying in Nice Stadium!!!', src: '' },
   { day: 'sep30', caption: 'September 30 -  Us on Main Street!!!', src: '' },
@@ -306,7 +307,7 @@ app.get('/egg-garden', async(req, res) => {
     }else {
         console.log('found none' + e); //throw err
     }
-    const newEggs = eggList.filter(egg => egg.eggnum > 24)
+    const newEggs = eggList.filter(egg => egg.eggnum >= 44)
     res.render("egggarden", {location: 'Egg Garden', eggs: newEggs});
   });
 
