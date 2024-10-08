@@ -194,6 +194,7 @@ app.get('/old-eggs', async(req, res) => {
 
 
 const potdslist = [
+  { day: 'oct8', caption: 'October 8 -  Us @ reunion 1 (in honor of our upcoming reunion)!', src: '' },
   { day: 'oct7', caption: 'October 7 -  Us talking the first night we hung out!!!', src: '' },
   { day: 'oct6', caption: 'October 6 -  Us post families colliding dinner!!', src: '' },
   { day: 'oct5', caption: 'October 5 -  Us looking so hot and famous at your rooftop party!', src: '' },
