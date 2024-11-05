@@ -2,7 +2,7 @@
         <div>
             <div id="eggnuminp">Egg Number <input type="number" name="eggnum" placeholder="e.x. 4"></div><br>
             <div id="spotcolorinp">Spot Color <input type="color" name="spotcolor" value="#ff0000" id="color-picker" /></div><br>
-            <div id="scaleinp">scale <input step="0.01" type="number" name="scale" placeholder="e.x. 1.2"></div><br>
+            {{!-- <div id="scaleinp">scale <input step="0.01" type="number" name="scale" placeholder="e.x. 1.2"></div><br> --}}
             <div id="xposinp">left <input type="number" name="xPos" placeholder="e.x. 50"></div><br>
             <div id="yposinp">bottom <input type="number" name="yPos" placeholder="e.x. 4"></div><br>
             <div id="animtimeinp">animationtime <input step="0.01" type="number" name="animationTime" placeholder="e.x. 1.2"></div><br>
@@ -14,3 +14,15 @@
         </div>
 </form>
 
+<script>
+    function getRandomColor() {
+      // Generate a random hex color
+      return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set color picker to a random color on load
+      const colorPicker = document.getElementById('spotcolorinp');
+      colorPicker.value = getRandomColor();
+    });
+</script>

@@ -112,10 +112,11 @@ app.get('/library/reading-room', (req, res) => {
 });
 
 app.post('/add-egg/add', async(req, res) => {
+  console.log(type(req.body.eggnum), type(req.body.animationTime), Number('1.'+req.body.eggnum))
   const newEgg = new Egg({
     eggnum: req.body.eggnum,
     spotcolor: req.body.spotcolor,
-    scale: req.body.scale,
+    scale: 1.2,
     xPos: req.body.xPos,
     yPos: req.body.yPos,
     animationTime: req.body.animationTime,
