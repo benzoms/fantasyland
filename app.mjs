@@ -112,14 +112,14 @@ app.get('/library/reading-room', (req, res) => {
 });
 
 app.post('/add-egg/add', async(req, res) => {
-  // console.log(type(req.body.eggnum), type(req.body.animationTime), Number('1.'+req.body.eggnum))
+  console.log()
   const newEgg = new Egg({
     eggnum: req.body.eggnum,
     spotcolor: req.body.spotcolor,
     scale: 1.2,
     xPos: req.body.xPos,
     yPos: req.body.yPos,
-    animationTime: req.body.animationTime,
+    animationTime: Number('1.'+req.body.eggnum),//req.body.animationTime,
     message: req.body.message,
     createdAt: req.body.createdAt
   });
@@ -195,6 +195,7 @@ app.get('/old-eggs', async(req, res) => {
 
 
 const potdslist = [
+  { day: 'nov7', caption: 'November 7 -  Us on the ferry on our way back from Orcas Island!!', src: '' },
   { day: 'nov6', caption: 'November 6 -  Us in a little cafe in a little town on Orcas Island!', src: '' },
   { day: 'nov5', caption: 'November 5 -  Us at the campsite on Orcas Island!!!', src: '' },
   { day: 'nov4', caption: 'November 4 -  Us on Orcas Island looking cute!!!', src: '' },
