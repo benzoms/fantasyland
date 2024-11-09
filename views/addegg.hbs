@@ -1,7 +1,7 @@
 <form method="POST" action="/add-egg/add">
         <div>
             <div id="eggnuminp">Egg Number <input type="number" name="eggnum" placeholder="e.x. 4"></div><br>
-            <div id="spotcolorinp">Spot Color <input type="color" name="spotcolor" value="#ff0000" id="color-picker" /></div><br>
+            <div id="spotcolorinp">Spot Color <input type="color" name="spotcolor" value="{{ pickerColor }}" id="color-picker" /></div><br>
             {{!-- <div id="scaleinp">scale <input step="0.01" type="number" name="scale" placeholder="e.x. 1.2"></div><br> --}}
             <div id="xposinp">left <input type="number" name="xPos" placeholder="e.x. 50"></div><br>
             <div id="yposinp">bottom <input type="number" name="yPos" placeholder="e.x. 4"></div><br>

@@ -104,8 +104,14 @@ app.use((error, req, res, next) => {
 app.get('/', async(req, res) => {
   res.redirect("/egg-garden");
 });
+
+
+function getRandomHexColor() {
+  const hexColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+  return hexColor;
+}
 app.get('/add-egg', async(req, res) => {
-  res.render("addegg");
+  res.render("addegg", {pickerColor: getRandomHexColor()});
 });
 app.get('/library/reading-room', (req, res) => {
   res.render("readingroom", {location: 'Reading Room 1'});
@@ -195,6 +201,7 @@ app.get('/old-eggs', async(req, res) => {
 
 
 const potdslist = [
+  { day: 'nov9', caption: 'November 9 -  Us at MoPop!', src: '' },
   { day: 'nov8', caption: 'November 8 -  Us at the indie gaming exhibit at MoPop!', src: '' },
   { day: 'nov7', caption: 'November 7 -  Us on the ferry on our way back from Orcas Island!!', src: '' },
   { day: 'nov6', caption: 'November 6 -  Us in a little cafe in a little town on Orcas Island!', src: '' },
